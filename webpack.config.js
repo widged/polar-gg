@@ -5,9 +5,10 @@ var merge     = require('webpack-merge');
 
 var TARGET    = process.env.TARGET;
 var ROOT_PATH = path.resolve(__dirname);
+var APP_PATH = path.resolve(ROOT_PATH, 'src');
 
 var common = {
-  entry: [path.resolve(ROOT_PATH, 'app/main')],
+  entry: [path.resolve(APP_PATH, 'main')],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -25,7 +26,7 @@ var common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Kanban app'
+      title: 'Grammar of Graphics with React and ES6'
     })
   ]
 };
@@ -37,7 +38,7 @@ if(TARGET === 'build') {
         {
           test: /\.jsx?$/,
           loader: 'babel?stage=1',
-          include: path.resolve(ROOT_PATH, 'app')
+          include: APP_PATH
         }
       ]
     },
@@ -64,24 +65,11 @@ if(TARGET === 'dev') {
         {
           test: /\.jsx?$/,
           loaders: ['react-hot', 'babel?stage=1'],
-          include: path.resolve(ROOT_PATH, 'app'),
+          include: APP_PATH
         },
       ],
     },
   });
 }
 
-if(TARGET === 'test') {
-  module.exports = merge(common, {
-    module: {
-      loaders: [
-        {
-          test: /\.jsx?$/,
-          loaders: ['react-hot', 'babel?stage=1'],
-          include: path.resolve(ROOT_PATH, 'test'),
-          exclude: /node_modules/
-        },
-      ],
-    },
-  });
-}
+

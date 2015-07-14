@@ -16,9 +16,11 @@
   "scripts": {
     "build": "TARGET=build webpack",
     "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "test": "mocha --compilers js:babel/register --recursive"
+    "test": "mocha --compilers jsx:./test/compiler.js ./src/components/**/*test.jsx"
   },
   "dependencies": {
+    "d3": "^3.5.6",
+    "jsdom": "^3.1.1",
     "react": "^0.13.3"
   },
   "devDependencies": {
@@ -34,7 +36,6 @@
     "webpack-merge": "^0.1.2",
     "jsdom": "^3.1.2",
     "mocha": "^2.2.5",
-    "mocha-jsdom": "^1.0.0",
     "should": "3.2.0-beta1",
     "requirejs": "2.1.11",
     "assert": "1.1.1"

@@ -1,8 +1,8 @@
 // __tests__/sum-test.js
 
-var React = require('react');
-var Note = require('../../app/components/Note.jsx');
 var assert = require('assert');
+var React = require('react');
+var Note = require('../../src/components/Note.jsx');
 
 require('../jsdom-setup');
 
