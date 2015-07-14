@@ -1,0 +1,42 @@
+{
+  "name": "react-es6-gg",
+  "version": "0.0.0",
+  "description": "Grammar of Graphics in react + ecmascript 6",
+  "main": "index.js",
+  "author": "Marielle Lange",
+  "license": "MIT",
+  "keywords": [
+    "gg",
+    "grammar of graphics",
+    "visualisation",
+    "reactjs",
+    "es6",
+    "es2015"
+  ],
+  "scripts": {
+    "build": "TARGET=build webpack",
+    "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
+    "test": "mocha --compilers js:babel/register --recursive"
+  },
+  "dependencies": {
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.6.18",
+    "babel-loader": "^5.2.2",
+    "css-loader": "^0.15.1",
+    "html-webpack-plugin": "^1.5.2",
+    "node-libs-browser": "^0.5.2",
+    "react-hot-loader": "^1.2.7",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1",
+    "webpack-merge": "^0.1.2",
+    "jsdom": "^3.1.2",
+    "mocha": "^2.2.5",
+    "mocha-jsdom": "^1.0.0",
+    "should": "3.2.0-beta1",
+    "requirejs": "2.1.11",
+    "assert": "1.1.1"
+  }
+}
