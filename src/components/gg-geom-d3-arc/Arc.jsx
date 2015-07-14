@@ -13,11 +13,11 @@ export default class Arc extends React.Component {
     }
 
     render() {
-        var data    = this.props;
-        var idx     = data.idx;
-        var style   = data.style;
-        var rotate  = data.rotate;
-        var d       = this.arcFn(data);
-        return <path className={'geom g-' + idx} transform={'rotate('+ rotate +')'} d={d} style={style} />;
+        var data       = this.props;
+        var idx        = data.idx;
+        var style      = data.style;
+        var transform  = 'rotate('+ data.rotate +')';
+        var d          = this.arcFn(data);
+        return <path className={'geom g-' + idx} transform={transform} d={d} style={style} />;
     }
 }
