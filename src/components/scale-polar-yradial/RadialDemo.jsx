@@ -2,7 +2,7 @@
 
 import React from 'react';
 import RadialAxis from './RadialAxis';
-import listTicks from '../scale-polar-xangular/Ticks';
+import listTicks from '../scale/Ticks';
 
 import '../../stylesheets/demo.css';
 import '../scale-polar-xangular/axis.css';

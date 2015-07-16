@@ -1,7 +1,7 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import listTicks from './Ticks';
+import listTicks from '../scale/Ticks';
 import AngularAxis from './AngularAxis';
 
 import '../../stylesheets/demo.css';
