@@ -1,11 +1,13 @@
 // __tests__/sum-test.js
 
 var assert = require('assert');
-var React = require('react');
+var React  = require('react');
 
 require('../../../../test/jsdom-setup');
 
 var Arc = require('../Arc.jsx');
+
+// React.renderToString(Arc({data}));
 
 // '<path class="geom g-0" transform="rotate(0)" d="M111.69841812686794,8.213609922280407A112,112 0 0,1 84.25121331044213,73.79521024916441L42.12560665522106,36.897605124582206A56,56 0 0,0 55.84920906343397,4.106804961140203Z" data-reactid=".16sexxqdyww"></path>'
 describe('arc', function() {

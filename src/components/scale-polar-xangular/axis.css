@@ -1,0 +1,29 @@
+g.axis text{
+    font: 10px sans-serif;
+    text-shadow:
+    -1px 0px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff; 
+}
+
+g.axis line {
+    stroke: black;
+    stroke-width: 2px;
+    stroke-dasharray: none;
+}
+
+g.axis line.major {
+    stroke: silver;
+    stroke-width: 1px;
+    stroke-dasharray: none;
+}
+
+g.axis line.minor,
+g.axis circle{
+    fill: none;
+    stroke: #777;
+    stroke-width: 1px;
+    stroke-dasharray: 1,4;
+}
+

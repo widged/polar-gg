@@ -1,3 +1,5 @@
+/* jshint esnext: true */
+
 import React from 'react';
 import d3 from 'd3';
 
