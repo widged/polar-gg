@@ -34,7 +34,6 @@ export default class GeomPolarBandDemo extends React.Component {
       "fill"   : {
         "coord" : { domain : [0, 3], range: ['red', 'blue'] },
         "dataFn": function(d, i) { return i; }
-        
       },
       "stroke" : {
         "coord": { domain : [0, 3], range: ['red', 'blue'] },

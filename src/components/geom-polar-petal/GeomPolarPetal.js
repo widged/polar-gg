@@ -29,7 +29,7 @@ export default class GeomPolarPetal {
                 c1 = {x: halfRadius + (r / 2), y: s.y},
                 c2 = {x: halfRadius + (r / 2), y: e.y};
             var angle2 = (d.startAngle + d.endAngle) / 2;
-            var rotate = Polar.degreesFromRadians(angle2) + (originTheta);
+            var rotate = Polar.degreesFromRadians(angle2) + (originTheta + 90);
             return {rotate: rotate, s: s,c1: c1, m: m, c2: c2, e: e };
         };
     }

@@ -13,9 +13,12 @@ export default class Geom {
     return function(d, idx) {
         return Object.keys(styleVariants).reduce(function(acc, key) {
             var fn = styleVariants[key].scaleFn;
-            if(Geom.isStyle(key) && typeof fn === 'function') { acc[key] = fn(d, idx); }
+            if(Geom.isStyle(key) && typeof fn === 'function') { 
+              if(!acc) { acc = {}; }
+              acc[key] = fn(d, idx); 
+            }
             return acc;
-        }, {});
+        }, null);
     };
   }
 

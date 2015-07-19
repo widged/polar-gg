@@ -3,7 +3,7 @@
 import React from 'react';
 import d3 from 'd3';
 
-export default class SvgArea extends React.Component {
+export default class SvgPolylineRadial extends React.Component {
 
     constructor() {
         super();
@@ -14,10 +14,8 @@ export default class SvgArea extends React.Component {
 
     render() {
         var {rotate, data} = this.props;
-        var transform  = 'rotate('+ (rotate || 0) +')';
-        var d       = this.radialFn(data);
+        var transform  = 'rotate(' + (rotate || 0) + ')';
+        var d          = this.radialFn(data);
         return <path transform={transform} d={d} />;
     }
 }
-
-

@@ -19,6 +19,12 @@ export default class GeomDemo extends React.Component {
   	return <demo className="scale">
 
       <div>
+      <h3>Polar Area</h3>
+        <GeomPolarAreaDemo/>
+      </div>
+
+
+      <div>
       <h3>Polar Band</h3>
         <GeomPolarBandDemo/>
       </div>
@@ -29,13 +35,33 @@ export default class GeomDemo extends React.Component {
       </div>
 
       <div>
+      <h3>Polar Donut Slice</h3>
+        <GeomPolarDonutDemo/>
+      </div>
+
+      <div>
       <h3>Polar Dot</h3>
         <GeomPolarDotDemo/>
       </div>
 
       <div>
+      <h3>Polar Hat</h3>
+        <GeomPolarHatDemo/>
+      </div>
+
+      <div>
       <h3>Polar Petal</h3>
         <GeomPolarPetalDemo/>
+      </div>
+
+      <div>
+      <h3>Polar Pie</h3>
+        <GeomPolarPieDemo/>
+      </div>
+
+      <div>
+      <h3>Polar Line</h3>
+        <GeomPolarLineDemo/>
       </div>
 
     </demo>
@@ -44,33 +70,3 @@ export default class GeomDemo extends React.Component {
 }
 
 
-/*
-
-      <div>
-      <h3>Polar Area</h3>
-        <GeomPolarAreaDemo/>
-      </div>
-
-
-      <div>
-      <h3>Polar Donut Slice</h3>
-        <GeomPolarDonutDemo/>
-      </div>
-
-
-      <div>
-      <h3>Polar Hat</h3>
-        <GeomPolarHatDemo/>
-      </div>
-
-      <div>
-      <h3>Polar Line</h3>
-        <GeomPolarLineDemo/>
-      </div>
-
-      <div>
-      <h3>Polar Pie</h3>
-        <GeomPolarPieDemo/>
-      </div>
-
-*/      

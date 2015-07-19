@@ -3,11 +3,26 @@
 import React from 'react';
 import d3 from 'd3';
 import LayerView  from '../../layer/LayerView-react';
-import Shape      from '../SvgPolygon';
+import Shape      from '../SvgPolylineRadial';
 
-export default class PolygonDemo extends React.Component {
+export default class RadialLineDemo extends React.Component {
 
     render() {
+
+    var radialLines = [
+      {data: [
+        {"radius": 47,"angle":2.0},
+        {"radius": 57,"angle":2.1},
+        {"radius": 68,"angle":2.2},
+        {"radius": 77,"angle":2.3},
+        {"radius": 85,"angle":2.4},
+        {"radius": 93,"angle":2.5},
+        {"radius":100,"angle":2.6},
+        {"radius":105,"angle":2.7},
+        {"radius":109,"angle":2.8},
+        {"radius":112,"angle":2.9}
+      ],"style":{stroke: "blue", fill: "transparent"}}
+    ];
 
     var areas = [
       { data: [
@@ -43,9 +58,10 @@ export default class PolygonDemo extends React.Component {
     ];
 
     return <div>
-      <h2>Area</h2>
+      <h2>Polyline Radial</h2>
       <svg>
         <LayerView data={areas} geom={Shape}/>
+        <LayerView data={radialLines} geom={Shape}/>
       </svg>
     </div>
 

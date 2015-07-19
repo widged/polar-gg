@@ -18,23 +18,3 @@ export default class RadialMark extends React.Component {
          </g>
     }
 }
-
-/*
-
-        function renderMarks(axisNode, scale, majorQty) {
-            var gridCircles = axisNode.selectAll('circle.grid-circle')
-                .data(scale.ticks(majorQty));
-            var gridCirclesEnter = gridCircles.enter().append('circle').attr({'class': 'grid-circle'});
-
-            gridCircles.attr('r', scale);
-            gridCircles.exit().remove();
-        }
-
-        function renderLabels(axisNode, scale, axisTheta, majorQty, ticksSuffix) {
-            var axis = d3.svg.axis().scale(scale).ticks(majorQty);
-            axisNode.call(axis).attr({transform: 'rotate('+ (axisTheta) +')'});
-            axisNode.selectAll('.domain').style({fill: 'none', stroke: 'black'});
-            axisNode.selectAll('.tick.major text').text(function(d, i){ return this.textContent + ticksSuffix; });
-        }
-
-*/

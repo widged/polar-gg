@@ -7,32 +7,42 @@ import './monthly.css';
 export default class GeomPolarPetal {
 
     static reduce(aesthetics, space, options) {
-        var scaleFn = aesthetics.x.scaleFn;
-        return d3.layout.pie()
-            .sort(null)
-            .value(function(d) { return scaleFn(d); });
+        var radial        = aesthetics.x;
+        var angular       = aesthetics.y;
+
+        var sum = 0;
+        return function(data) {
+            data.forEach(function(d, i) { 
+                sum += radial.dataFn(d);
+            });
+            data = data.map(function(d, i) { 
+                return [angular.dataFn(d), radial.dataFn(d) / sum];
+            });
+            return data;
+        }        
     }
 
     static layout(aesthetics, space, options) {
 
+        var radial        = aesthetics.x;
+        var angular       = aesthetics.y;
+
         var originTheta    = space.originTheta || 0;
         var halfRadius     = (space.radius || 125) / 2;
+        var innerRadius    = options.innerRadius || radial.scale(0.5);
+        var outerRadius    = radial.scale(1);
 
-        var size = d3.scale.sqrt()
-            .domain([0, 1])
-            .range([0, halfRadius]);
-
+        var currentAngle = 0;
         return function(d, idx) {
-            var angle = (d.endAngle - d.startAngle) / 2,
-                s = Polar.polarToCartesian(-angle, halfRadius),
-                e = Polar.polarToCartesian(angle, halfRadius),
-                r = size(d.value),
-                m = {x: halfRadius + r, y: 0},
-                c1 = {x: halfRadius + (r / 2), y: s.y},
-                c2 = {x: halfRadius + (r / 2), y: e.y};
-            var angle2 = (d.startAngle + d.endAngle) / 2;
-            var rotate = Polar.degreesFromRadians(angle2) + (originTheta);
-            return {rotate: rotate, startAngle: s,innerRadius: c1, outerRadius: c2, endAngle: e };
+            var startAngle = currentAngle,
+                endAngle = currentAngle + (angular.dataFn(d) * 360);
+            
+            currentAngle =  endAngle;
+            var startRad = Polar.radiansFromDegrees(startAngle);
+            var endRad = Polar.radiansFromDegrees(endAngle);
+
+            var rotate = originTheta - 90;
+            return {startAngle: startRad, endAngle: endRad, innerRadius: innerRadius, outerRadius: outerRadius, rotate: rotate };
 
         };
     }

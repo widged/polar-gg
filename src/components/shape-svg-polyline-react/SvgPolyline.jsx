@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default class SvgPath extends React.Component {
+export default class SvgPolyline extends React.Component {
 
     render() {
         var {rotate, translate, lines} = this.props;

@@ -18,14 +18,14 @@ export default class GeomPolarBarDemo extends React.Component {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
     var aes = {
       "y":{
-        "type"   : "angular",
-        "guides" : [{"type":"axis"}],
+        type   : "angular",
+        guides : [{"type":"axis"}],
         coord: {domain: [0, 750], range: [0, 360]},
         dataFn: function(d) { return d[0]; }
       },
       "x":{
-        "type"   : "radial",
-        "guides" : [{"type":"axis"}],
+        type   : "radial",
+        guides : [{"type":"axis"}],
         coord: { domain :  [-40, 100], range: [0, 115] },
         dataFn: function(d) { return d[1]; }
       }

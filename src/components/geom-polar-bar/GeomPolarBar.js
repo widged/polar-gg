@@ -18,9 +18,8 @@ export default class GeomPolarBar {
             var y      = radial.scale(0);
             var width  = barWidth;
             var height = radial.scaleFn(d);
-            var transform = 'rotate('+ (rotate || 0) +')';
             // renders to a rectangle
-            return {transform: transform, x: x, y: y, width: width, height: height, d: d }; 
+            return {rotate: rotate, x: x, y: y, width: width, height: height, d: d }; 
         };
     }
     

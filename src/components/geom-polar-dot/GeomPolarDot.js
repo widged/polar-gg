@@ -15,7 +15,7 @@ export default class GeomPolarDot {
         var size        = aesthetics.size || {scaleValue: function(d) { return 1; }};
 
         return function(d, i) {
-            var rotate = (originTheta - 90 + angular.scaleFn(d));
+            var rotate = (originTheta + 0 + angular.scaleFn(d));
             var r = maxRadius * size.scaleFn(d);
             var cy = radial.scaleFn(d);
             return {rotate: rotate, r: r, cy: cy, options: options };

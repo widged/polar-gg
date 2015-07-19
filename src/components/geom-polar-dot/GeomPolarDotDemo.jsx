@@ -41,6 +41,7 @@ export default class GeomPolarDotDemo extends React.Component {
     };
     var options  = {dotsize: 40, maxSize: 50, shape: 'circle'};
     var data     = Monthly.mapToData({ "jan": 6, "feb": 10, "mar": 12, "apr": 11, "may": 8, "jun": 4, "jul": 4, "aug": 7, "sep": 12, "oct": 13, "nov": 12, "dec": 8 });
+
     var geomData = Geom.prepare(data, GeomMapper, space, aes, options);
 
   	return <svg width="250" height="250">

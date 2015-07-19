@@ -3,7 +3,7 @@
 import React from 'react';
 import d3 from 'd3';
 import LayerView  from '../../layer/LayerView-react';
-import Shape      from '../SvgHat';
+import Shape      from '../SvgPolyline';
 
 export default class HatDemo extends React.Component {
 
@@ -17,7 +17,7 @@ export default class HatDemo extends React.Component {
     ];
 
     return <div>
-      <h2>Hat</h2>
+      <h2>Polyline</h2>
       <svg>
         <LayerView data={paths} geom={Shape}/>
       </svg>
