@@ -9,3 +9,6 @@ demo > div > h2  {
 	font-weight: 700;
 }
 
+demo.scale > div > div {
+	display: inline-block;
+}

@@ -1,6 +1,7 @@
 /* jshint esnext: true */
 
 export default class Utils {
+
     static shallowClone(obj) {
         var shallowClone;
         if(typeof obj !== 'object') { 

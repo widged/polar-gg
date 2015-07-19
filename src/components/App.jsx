@@ -2,10 +2,9 @@
 
 import React from 'react';
 import ShapeDemo from './shape/ShapeDemo';
-import ScaleDemo from './scale/ScaleDemo';
+import GuideDemo from './guide/GuideDemo';
 import GeomDemo  from './geom/GeomDemo';
 import PlotDemo  from './plot/PlotDemo';
-import LayerDemo  from './layer/LayerDemo';
 
 export default class App extends React.Component {
   render() {
@@ -22,18 +21,18 @@ export default class App extends React.Component {
 
       <div>
         <h1>Scales</h1>
-        <ScaleDemo/>
       </div>
 
       <div>
-        <h1>Geoms</h1>
+        <h1>Guides</h1>
+        <GuideDemo/>
+      </div>
+
+      <div>
+        <h1>Geom Layers</h1>
         <GeomDemo/>
       </div>
-      
-      <div>
-        <h1>Layer</h1>
-        <LayerDemo/>
-      </div>      
+
 
   	</app>;
 

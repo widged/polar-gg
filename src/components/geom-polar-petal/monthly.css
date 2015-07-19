@@ -1,0 +1,92 @@
+
+/* months overwrites */
+
+.months.dots .geom {
+    stroke-width    : 0px;
+}
+
+.months {
+    stroke: #f4cfe8;
+    fill: #f4cfe8;
+}
+
+.months .geom.g-8 {
+    stroke: #f4cfe8;
+    fill: #f4cfe8;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-9 {
+    stroke: #bf007f;
+    fill: #bf007f;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-10 {
+    stroke: #f492d4;
+    fill: #f492d4;
+    fill-opacity: 0.6;
+}
+
+
+.months .geom.g-11 {
+    stroke: #e6ffb3;
+    fill: #e6ffb3;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-0 {
+    stroke: #78b300;
+    fill: #78b300;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-1 {
+    stroke: #c4e67f;
+    fill: #c4e67f;
+    fill-opacity: 0.6;
+}
+
+
+.months .geom.g-2 {
+    stroke: #ffdacc;
+    fill: #ffdacc;
+    fill-opacity: 0.6;
+}
+.months .geom.g-3 {
+    stroke: #e63d00;
+    fill: #e63d00;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-4 {
+    stroke: #ffb499;
+    fill: #ffb499;
+    fill-opacity: 0.6;
+}
+
+
+.months .geom.g-5 {
+    stroke: #cceeff;
+    fill: #cceeff;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-6 {
+    stroke: #008fcc;
+    fill: #008fcc;
+    fill-opacity: 0.6;
+}
+
+.months .geom.g-7 {
+    stroke: #99ddff;
+    fill: #99ddff;
+    fill-opacity: 0.6;
+}
+
+
+
+.months.star .geom {
+    stroke-width : 0px;
+    fill-opacity : 1.0;
+}
