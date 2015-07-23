@@ -4,7 +4,7 @@ import React from 'react';
 import AngularDemo  from '../guide-polar-xangular/AngularDemo';
 import RadialDemo  from '../guide-polar-yradial/RadialDemo';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 
 export default class GuideDemo extends React.Component {
   render() {

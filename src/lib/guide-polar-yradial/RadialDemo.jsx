@@ -5,7 +5,7 @@ import Scale from '../../lib/Scale';
 import RadialAxis from './RadialAxis';
 import listTicks from '../guide/Ticks';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 import '../guide/axis.css';
 
 

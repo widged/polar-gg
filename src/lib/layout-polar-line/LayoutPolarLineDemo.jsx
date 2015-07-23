@@ -8,7 +8,7 @@ import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
 import Layout from './LayoutPolarLine';
 import Geom       from '../geom/Geom';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

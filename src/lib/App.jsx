@@ -1,7 +1,8 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import RendererSvgDemo from './renderer-react-svg/usage/Renderer-demo';
+import ReactSvgDemo   from './renderer-react-svg/usage/Renderer-demo';
+import VanillaSvgDemo from './renderer-vanilla-svg/usage/Renderer-demo';
 import GuideDemo from './guide/GuideDemo';
 import LayoutDemo  from './layout/LayoutDemo';
 import PlotDemo  from './plot/PlotDemo';
@@ -17,10 +18,12 @@ export default class App extends React.Component {
 
       <div>
         <h1>Renderer</h1>
-        <h2>SVG</h2>
-        <RendererSvgDemo/>
+        <h2>React+SVG</h2>
+        <ReactSvgDemo/>
+        <h2>Vanilla+SVG</h2>
+        <VanillaSvgDemo/>
         <h2>Others</h2>
-        React, canvas, webgl, famous
+        React+webgl, famous
       </div>
 
       <div>

@@ -1,7 +1,7 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import RendererSvg from '../renderer-svg/RendererSvg';
+import RendererSvg from '../shapes-svg/RendererSvg';
 
 class Plot extends React.Component {
   render() {

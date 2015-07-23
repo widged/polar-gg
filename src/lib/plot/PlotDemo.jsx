@@ -3,7 +3,7 @@
 import React from 'react';
 import PlotView from './PlotSvg.jsx';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 
 export default class PlotDemo extends React.Component {
   render() {

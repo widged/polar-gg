@@ -9,7 +9,7 @@ import Geom       from '../geom/Geom';
 import Monthly    from '../plot-monthly/Monthly';
 import Layout from './LayoutPolarHat';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

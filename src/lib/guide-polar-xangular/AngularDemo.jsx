@@ -5,7 +5,7 @@ import Scale from '../../lib/Scale';
 import listTicks from '../guide/Ticks';
 import AngularAxis from './AngularAxis';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 import '../guide/axis.css';
 
 export default class AngularDemo extends React.Component {

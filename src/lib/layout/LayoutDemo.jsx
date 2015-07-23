@@ -11,7 +11,7 @@ import LayoutPolarLineDemo  from '../../lib/layout-polar-line/LayoutPolarLineDem
 import LayoutPolarPieDemo  from '../../lib/layout-polar-pie/LayoutPolarPieDemo';
 import LayoutPolarPetalDemo  from '../../lib/layout-polar-petal/LayoutPolarPetalDemo';
 
-import '../../stylesheets/demo.css';
+import '../demo/demo.css';
 
 export default class GeomDemo extends React.Component {
   render() {
