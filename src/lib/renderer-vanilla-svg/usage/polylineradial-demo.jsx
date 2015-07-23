@@ -59,8 +59,8 @@ export default class RadialLineDemo {
     var group1 = VanillaSvg.createElement(Group, {data: areas, shape: 'polylineradial'});
     var group2 = VanillaSvg.createElement(Group, {data: radialLines, shape: 'polylineradial'});
     return HtmlTransform.exec(`<div>
-      <h2>Polyline</h2>
-      <svg width="250" height="250">
+      <h2>Polyline Radial</h2>
+      <svg>
         ${group1.outerHTML}
         ${group2.outerHTML}
       </svg>

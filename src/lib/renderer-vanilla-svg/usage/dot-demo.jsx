@@ -26,7 +26,7 @@ export default class DotDemo {
         var group = VanillaSvg.createElement(Group, {data: dots, shape: 'dot'});
         return HtmlTransform.exec(`<div>
           <h2>Dot</h2>
-          <svg width="250" height="250">
+          <svg>
             ${group.outerHTML}
           </svg>
         </div>`);

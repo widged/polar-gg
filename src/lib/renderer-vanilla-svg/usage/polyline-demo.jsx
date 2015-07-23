@@ -18,7 +18,7 @@ export default class PolylineDemo {
     var group = VanillaSvg.createElement(Group, {data: paths, shape: 'polyline'});
     return HtmlTransform.exec(`<div>
       <h2>Polyline</h2>
-      <svg width="250" height="250">
+      <svg>
         ${group.outerHTML}
       </svg>
     </div>`);

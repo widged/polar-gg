@@ -19,9 +19,9 @@ export default class RendererReactSvgDemo extends React.Component {
       <DotCircleDemo/>
       <DotSquareDemo/>
       <PetalDemo/>
+      <RectDemo/>
       <PolylineDemo/>
       <PolylineRadialDemo/>
-      <RectDemo/>
   	</demo>;
   }
 }

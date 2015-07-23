@@ -2,7 +2,8 @@
 
 import RendererSvg from '../shapes-svg/RendererSvg';
 
-const svgNS = 'http://www.w3.org/2000/svg';
+
+
 
 class Plot {
   render() {
@@ -19,6 +20,8 @@ class Plot {
 }
 
 
+
+
 class Layer {
 
   static augmentProps(props, i, style, options) {
@@ -31,18 +34,20 @@ class Layer {
   }
 
   render() {
-    var {data, geom, options} = this.props;
-    var renderer = RendererSvg[geom];
+    var {data, shape, options} = this.props;
+    var renderer = RendererSvg[shape];
 
     var renderItem = function(item, i) {
       var {type, props} = renderer(item);
-      props = Layer.augmentProps(props, i, item.style, options);
-      return React.createElement(type, props);
+      props = Group.augmentProps(props, i, item.style, options);
+      return VanillaSvg.createElementOfTag(type, props);
     };
 
-    return Vanilla.createElement('g', {}, data.map(renderItem));
+    return VanillaSvg.createElement('g', {}, data.map(renderItem));
   }
 }
+
+
 
 
 class Group {
@@ -62,12 +67,14 @@ class Group {
     var renderItem = function(item, i) {
       var {type, props} = renderer(item);
       props = Group.augmentProps(props, i, item.style, options);
-      return VanillaSvg.createElement(type, props);
+      return VanillaSvg.createElementOfTag(type, props);
     };
 
     return VanillaSvg.createElement('g', {}, data.map(renderItem));
   }
 }
+
+
 
 export default class VanillaSvg { 
 
@@ -85,6 +92,8 @@ export default class VanillaSvg {
   }
 
   static createElementOfTag(type, props, ...children) {
+      const svgNS = 'http://www.w3.org/2000/svg';
+
       var rootEl = document.createElementNS(svgNS,type);
       Object.keys(props).forEach(function(k) {
         var p = props[k];
@@ -92,17 +101,13 @@ export default class VanillaSvg {
         rootEl.setAttribute(k, p);
       });
 
-      if(Array.isArray(children)) { 
-        // whenever map is used.
-        if(Array.isArray(children[0])) {
-          children = children[0][0]; 
-        } else {
-          children = [];
-        }
+      // whenever map is used.
+      if(Array.isArray(children) && Array.isArray(children[0])) { 
+        children = children[0][0]; 
       }
       (children || []).forEach(function(d) {
         rootEl.appendChild(d);
-      })
+      });
       return rootEl;
   }
 

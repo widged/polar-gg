@@ -19,7 +19,7 @@ export default class PetalDemo {
     var group = VanillaSvg.createElement(Group, {data: petals, shape: 'petal'});
     return HtmlTransform.exec(`<div>
       <h2>Flower Petal</h2>
-      <svg width="250" height="250">
+      <svg>
         ${group.outerHTML}
       </svg>
     </div>`);

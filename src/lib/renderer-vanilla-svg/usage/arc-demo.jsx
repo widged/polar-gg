@@ -18,7 +18,7 @@ export default class ArcDemo {
         var group = VanillaSvg.createElement(Group, {data: arcs, shape: 'arc'});
         return HtmlTransform.exec(`<div>
           <h2>Arc</h2>
-          <svg width="250" height="250">
+          <svg>
             ${group.outerHTML}
           </svg>
         </div>`);

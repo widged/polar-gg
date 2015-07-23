@@ -18,7 +18,7 @@ export default class RectDemo {
       var group = VanillaSvg.createElement(Group, {data: bars, shape: 'rect'});
       return HtmlTransform.exec(`<div>
         <h2>Bar</h2>
-        <svg width="250" height="250">
+        <svg>
           ${group.outerHTML}
         </svg>
       </div>`);
