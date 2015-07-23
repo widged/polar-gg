@@ -1,13 +1,12 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import RendererReactSvg from '../RendererReactSvg';
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-const Group = RendererReactSvg.Group;
+export default class RadialLineDemo {
 
-export default class RadialLineDemo extends React.Component {
-
-    render() {
+  render() {
 
     var radialLines = [
       {radiallines: [
@@ -57,13 +56,14 @@ export default class RadialLineDemo extends React.Component {
       }
     ];
 
-    return <div>
-      <h2>Polyline Radial</h2>
-      <svg>
-        <Group data={areas} shape='polylineradial' renderer={RendererReactSvg} />
-        <Group data={radialLines} shape='polylineradial' />
+    var group1 = VanillaSvg.createElement(Group, {data: areas, shape: 'polylineradial'});
+    var group2 = VanillaSvg.createElement(Group, {data: radialLines, shape: 'polylineradial'});
+    return HtmlTransform.exec(`<div>
+      <h2>Polyline</h2>
+      <svg width="250" height="250">
+        ${group1.outerHTML}
+        ${group2.outerHTML}
       </svg>
-    </div>
-
-    }
+    </div>`);
+  }
 }

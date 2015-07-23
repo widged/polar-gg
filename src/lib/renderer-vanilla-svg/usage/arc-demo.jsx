@@ -1,11 +1,10 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import Vanilla from '../RendererVanillaSvg';
-const Group = Vanilla.Group;
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-
-export default class ArcDemo extends React.Component {
+export default class ArcDemo {
 
     render() {
         var arcs = [
@@ -16,15 +15,13 @@ export default class ArcDemo extends React.Component {
             {"startAngle":0.9395417281763866,"endAngle":1.6441980243086765,"innerRadius":56,"outerRadius":112,"rotate":0,"style":{fill: "green"}}
         ];
 
-        var group = Vanilla.createElement(Group, {data: arcs, shape: 'arc'});
-        var html = `<div>
+        var group = VanillaSvg.createElement(Group, {data: arcs, shape: 'arc'});
+        return HtmlTransform.exec(`<div>
           <h2>Arc</h2>
           <svg width="250" height="250">
             ${group.outerHTML}
           </svg>
-        </div>`;
-
-        return <div dangerouslySetInnerHTML={{__html: html}} />;
+        </div>`);
     }
 }
 

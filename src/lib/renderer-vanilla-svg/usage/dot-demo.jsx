@@ -1,11 +1,10 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import RendererReactSvg from '../RendererReactSvg';
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-const Group = RendererReactSvg.Group;
-
-export default class DotDemo extends React.Component {
+export default class DotDemo {
 
     render() {
 
@@ -24,11 +23,12 @@ export default class DotDemo extends React.Component {
         { "rotate": 0, "r":  8.6, "cx": 30, "cy":  60, "style": {}}
       ];
 
-      return <div>
-        <h2>Dot</h2>
-        <svg>
-          <Group data={dots} shape='dot' />
-        </svg>
-      </div>;
+        var group = VanillaSvg.createElement(Group, {data: dots, shape: 'dot'});
+        return HtmlTransform.exec(`<div>
+          <h2>Dot</h2>
+          <svg width="250" height="250">
+            ${group.outerHTML}
+          </svg>
+        </div>`);
     }
 }

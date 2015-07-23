@@ -1,28 +1,27 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import RendererReactSvg from '../RendererReactSvg';
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-const Group = RendererReactSvg.Group;
-
-export default class RectDemo extends React.Component {
+export default class RectDemo {
 
     render() {
 
-    var bars = [
-        {"x":20.833333333333332,"y":72.14285714285714,"width":19,"height":177.85714285714286,"style":{fill: "green"}},
-        {"x":41.666666666666664,"y":36.57142857142857,"width":19,"height":213.42857142857144,"style":{fill: "red"}},
-        {"x":62.5,"y":54.357142857142854,"width":19,"height":195.64285714285714,"style":{fill: "orange"}},
-        {"x":83.33333333333333,"y":107.71428571428571,"width":19,"height":142.28571428571428,"style":{fill: "blue"}}
-    ];
+      var bars = [
+          {"x":20.83,"y":72.14,"width":19,"height":177.86,"style":{fill: "green"}},
+          {"x":41.67,"y":36.57,"width":19,"height":213.43,"style":{fill: "red"}},
+          {"x":62.50,"y":54.36,"width":19,"height":195.64,"style":{fill: "orange"}},
+          {"x":83.33,"y":107.71,"width":19,"height":142.29,"style":{fill: "blue"}}
+      ];
 
-    return <div>
-      <h2>Bar</h2>
-      <svg>
-        <Group data={bars} shape='rect' />
-      </svg>
-    </div>
-
+      var group = VanillaSvg.createElement(Group, {data: bars, shape: 'rect'});
+      return HtmlTransform.exec(`<div>
+        <h2>Bar</h2>
+        <svg width="250" height="250">
+          ${group.outerHTML}
+        </svg>
+      </div>`);
 
     }
 }

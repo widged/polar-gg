@@ -1,13 +1,12 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import RendererReactSvg from '../RendererReactSvg';
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-const Group = RendererReactSvg.Group;
+export default class PolylineDemo {
 
-export default class HatDemo extends React.Component {
-
-    render() {
+  render() {
 
     var paths = [
       {"rotate":30,"translate":"74.28571428571428, 0","lines":[[0,0],[-54.285714285714285,10],[-54.285714285714285,-10]],"style":{fill: "red"}},
@@ -16,14 +15,13 @@ export default class HatDemo extends React.Component {
       {"rotate":90,"translate":"47.14285714285714, 0","lines":[[0,0],[-27.142857142857142,10],[-27.142857142857142,-10]],"style":{fill: "green"}}
     ];
 
-    return <div>
+    var group = VanillaSvg.createElement(Group, {data: paths, shape: 'polyline'});
+    return HtmlTransform.exec(`<div>
       <h2>Polyline</h2>
-      <svg>
-        <Group data={paths} shape='polyline' />
+      <svg width="250" height="250">
+        ${group.outerHTML}
       </svg>
-    </div>
+    </div>`);
 
-
-
-    }
+  }
 }

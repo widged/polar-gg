@@ -91,7 +91,15 @@ export default class VanillaSvg {
         if(k === 'style') { p = VanillaSvg.reformatStyle(p); }
         rootEl.setAttribute(k, p);
       });
-      if(Array.isArray(children)) { children = children[0][0]; } // whenever map is used.
+
+      if(Array.isArray(children)) { 
+        // whenever map is used.
+        if(Array.isArray(children[0])) {
+          children = children[0][0]; 
+        } else {
+          children = [];
+        }
+      }
       (children || []).forEach(function(d) {
         rootEl.appendChild(d);
       })

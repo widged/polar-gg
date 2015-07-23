@@ -1,11 +1,10 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import RendererReactSvg from '../RendererReactSvg';
+import VanillaSvg    from '../RendererVanillaSvg';
+import HtmlTransform from '../HtmlTransform';
+const Group = VanillaSvg.Group;
 
-const Group = RendererReactSvg.Group;
-
-export default class PetalDemo extends React.Component {
+export default class PetalDemo {
 
     render() {
 
@@ -17,12 +16,13 @@ export default class PetalDemo extends React.Component {
       {"rotate":88.31775700934583,"s":{"x":57.10391281949932,"y":-6.737443187368721},"c1":{"x":72.8675214099644,"y":-6.737443187368721},"m":{"x":88.23504281992881,"y":0},"c2":{"x":72.8675214099644,"y":6.737443187368721},"e":{"x":57.10391281949932,"y":6.737443187368721},"style":{fill: "blue"}}
     ];
 
-    return <div>
+    var group = VanillaSvg.createElement(Group, {data: petals, shape: 'petal'});
+    return HtmlTransform.exec(`<div>
       <h2>Flower Petal</h2>
-      <svg>
-        <Group data={petals} shape='petal' />
+      <svg width="250" height="250">
+        ${group.outerHTML}
       </svg>
-    </div>
+    </div>`);
 
     }
 }
