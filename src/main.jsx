@@ -24,7 +24,7 @@ function main() {
 
     var tabTitles, pageContents, onTabChange, app;
 
-    var activePage = 2;
+    var activePage = 0;
     var activePageEmitter = new EventEmitter();
     tabTitles    = pages.props.children.map(function(page) { return page.props.title; });
     pageContents = pages.props.children.map(function(page) { return page.props.children; });

@@ -1,12 +1,17 @@
 demo section {
+	display: block;
 	margin: 24px 0;
 }
+
+
+demo.primitives section,
 demo section section  {
 	display: inline-block;
 	background-color: #E7EBEE;
 	margin: 9px;
 	padding: 6px 6px;
 }
+
 
 demo section title  {
 	display: block;

@@ -30,7 +30,7 @@ export default class ReactSvgDemo extends React.Component {
     };
 
     function geom(Mock) {
-        var {data, geom, customClass} = Mock.scenario1();
+        var {data, geom, customClass} = Mock.scenario();
         const PlotView  = ReactSvg.Plot;
         const LayerView = ReactSvg.Layer;
         const title = Mock.name;

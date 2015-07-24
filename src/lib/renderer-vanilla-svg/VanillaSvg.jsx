@@ -7,18 +7,22 @@ import RendererSvg from '../shapes-svg/RendererSvg';
 
 class Plot {
   render() {
-    var {width, height, children, customClass} = this.props;
+    var {width, height, layers, customClass} = this.props;
     if(!width) { width = 250; }
     if(!height) { height = 250; }
     const transform = 'translate(' + (width/2) + ',' + (height/2) + ')';
     const classes = 'layers' + (customClass ? ' ' + customClass : '');
 
-    function renderLayer(layer) { return layer.outerHTML; }
     var el = HtmlTransform.exec(`<svg width=${width} height=${height}>
-      <g class="${classes}" transform="${transform}">
-        ${children.map(renderLayer)}
-      </g>
+      <g class="${classes}" transform="${transform}"></g>
     </svg>`);
+
+    var elLayers = el.querySelector('g.layers');
+    layers.forEach(function(data) {
+      var node = Vanilla.createElement(Layer, data);
+      elLayers.appendChild(node);
+    });
+    
     return el;
   }
 }
@@ -45,6 +49,7 @@ class Layer {
       props = Layer.augmentProps(props, i, item.style, options);
       return Vanilla.createElement(type, props);
     };
+
 
     return Vanilla.createElement('g', {}, data.map(renderItem));
   }

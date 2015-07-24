@@ -22,15 +22,14 @@ export default class ReactSvgDemo extends React.Component {
     var Section = Demo.Section;
 
     function geom(Mock) {
-        var {data, geom, customClass} = Mock.scenario1();
+        var {data, geom, customClass} = Mock.scenario();
         const PlotView  = VanillaSvg.Plot;
         const LayerView = VanillaSvg.Layer;
         const title = Mock.name;
 
         var elPlot  = Vanilla.createElement(
           PlotView, 
-          {width: 250, height: 250, customClass: customClass}, 
-          Vanilla.createElement(LayerView, {data: data, geom: geom})
+          {width: 250, height: 250, customClass: customClass, layers: [{data: data, geom: geom}]}
         );
         return <Section title={title}>
           <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />

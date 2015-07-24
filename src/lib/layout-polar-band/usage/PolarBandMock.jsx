@@ -1,11 +1,13 @@
 /* jshint esnext: true */
 
-import Geom    from '../../layout/Layout';
-import Monthly from '../../plot-monthly/Monthly';
-import Layout  from '../LayoutPolarBand';
+import MockScenarios from '../../../components/demo/MockScenarios';
+import Layout     from '../../layout/Layout';
+import Monthly    from '../../plot-monthly/Monthly';
+import GeomLayout from '../LayoutPolarBand';
 
-export default class PolarBandMock {
-  static scenario1() {
+export default class PolarBandMock extends MockScenarios {
+
+  static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
     var aes = {
       "y":{
@@ -33,10 +35,9 @@ export default class PolarBandMock {
     var options = {};
     var data = [[1,4],[2,8],[3,7]];
 
-    var layoutFn = Geom.layoutFn(Layout, aes, space, options);
+    var layoutFn = Layout.geom(GeomLayout, aes, space, options);
     var geomData = layoutFn(data); 
     return {data: geomData, geom: 'arc'};
   }
+
 }
-
-

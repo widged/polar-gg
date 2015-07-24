@@ -17,8 +17,8 @@ class Section extends React.Component {
 
 export default  class Demo extends React.Component {
     render() {
-        var {children} = this.props;
-        return <demo>
+        var {children, className} = this.props;
+        return <demo className={className}>
             {children}
         </demo>;
     }
