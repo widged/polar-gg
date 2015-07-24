@@ -1,11 +1,11 @@
 /* jshint esnext: true */
 
 import React from 'react';
+import d3    from 'd3';
 
-import Layout from './LayoutPolarArea';
-import Geom       from '../geom/Geom';
-import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
-import Monthly    from '../plot-monthly/Monthly';
+import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
+import Geom    from '../../layout/Layout';
+import Layout  from '../LayoutPolarLine';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;
@@ -18,26 +18,26 @@ export default class LayoutPolarLineDemo extends React.Component {
     var aes = {
       "x":{
         type    : "radial",
-        coord   : { domain :  [0, 14], range: [0, 115] },
+        coord   : { domain :  [0, 1], range: [0, 115] },
         dataFn  : function(d) { return d[1]; }
       },
       "y":{
         type    : "angular",
-        coord: {domain: [0, 12], range: [0, 360]},
+        coord: {domain: [0, 360], range: [360, 0]},
         dataFn  : function(d) { return d[0]; }
       },
     };
     var options = {};
 
-    var data     = Monthly.xyFrom({ "jan": 6, "feb": 10, "mar": 12, "apr": 11, "may": 8, "jun": 4, "jul": 4, "aug": 7, "sep": 12, "oct": 13, "nov": 12, "dec": 8 });
+    var data = d3.range(0, 721, 1).map(function(deg, index){ return [deg, index/720]; });
 
     var layoutFn = Geom.layoutFn(Layout, aes, space, options);
     var geomData = layoutFn(data);
-    var gpData = [{radiallines: geomData, style: {fill: '#FFCF32'}}];
+
+    var gpData = [{radiallines: geomData, style: {fill: 'none', stroke: 'blue'}}];
 
     return <PlotView width="250" height="250">
         <LayerView data={gpData} geom='polylineradial' />
     </PlotView>;
   }
 }
-

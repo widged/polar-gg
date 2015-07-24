@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarLine {
 
@@ -15,6 +15,7 @@ export default class LayoutPolarLine {
             var radius = radial.scaleFn(d);
             var angle  = Polar.radiansFromDegrees(angular.scaleFn(d));
             var rotate = originTheta + 90;
+            // renders to a polylineradial primitive
             return {radius: radius, angle: angle, rotate: rotate };
         };
     }

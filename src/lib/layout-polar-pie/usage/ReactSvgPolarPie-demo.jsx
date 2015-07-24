@@ -1,13 +1,11 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import d3    from 'd3';
 
-import Scale  from '../../lib/Scale';
-import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
-import Geom   from '../geom/Geom';
-import Layout from './LayoutPolarPie';
-import Monthly from '../plot-monthly/Monthly';
+import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
+import Monthly from '../../plot-monthly/Monthly';
+import Geom    from '../../layout/Layout';
+import Layout  from '../LayoutPolarPie';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

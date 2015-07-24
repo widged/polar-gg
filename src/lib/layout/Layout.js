@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Scale      from '../../lib/Scale';
+import Scale      from '../scale/Scale';
 
 export default class Geom {
 

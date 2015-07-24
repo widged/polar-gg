@@ -3,10 +3,9 @@
 import React from 'react';
 import d3 from 'd3';
 
-import Scale from '../../lib/Scale';
-import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
-import Geom       from '../geom/Geom';
-import Layout from './LayoutPolarBar';
+import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
+import Geom    from '../../layout/Layout';
+import Layout  from '../LayoutPolarBar';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

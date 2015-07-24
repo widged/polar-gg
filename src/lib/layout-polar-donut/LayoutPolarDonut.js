@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 import '../plot-monthly/monthly.css';
 
@@ -43,6 +43,7 @@ export default class LayoutPolarPetal {
             var endRad = Polar.radiansFromDegrees(endAngle);
 
             var rotate = originTheta - 90;
+            // renders to an arc primitive
             return {startAngle: startRad, endAngle: endRad, innerRadius: innerRadius, outerRadius: outerRadius, rotate: rotate };
 
         };

@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarPie {
 
@@ -17,6 +17,7 @@ export default class LayoutPolarPie {
             var baseW = Math.tan(triangleAngle) * h;
             var rotate = originTheta + (angular.scale(i)) + 90;
             var lines = [[0, 0], [h, baseW], [h, -baseW]];
+            // renders to a polyline primitive
             return {rotate: rotate, lines: lines };
         };
 

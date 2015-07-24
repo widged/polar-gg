@@ -1,54 +1,41 @@
+/* jshint esnext: true */
+
 import './main.css';
 
 import React from 'react';
 import ReactSvgDemo   from './lib/renderer-react-svg/usage/ReactSvgDemo';
 import VanillaSvgDemo from './lib/renderer-vanilla-svg/usage/VanillaSvgDemo';
 
-
-class Tabs extends React.Component {
-
-	constructor(props) {
-		super();
-		this.state = {activePane: parseInt(props.activePane) || 0};
-	}
-
-	handlePaneChange(event) {
-		var activePane = event.target.dataset.pane;
-		this.setState({activePane: parseInt(activePane) });
-	}	
-
-  	render() {
-  		var activePane = this.state.activePane;
-    	var panes = this.props.children.reduce(function(acc, item) {
-    		const {title, children} = item.props;
-    		acc.push({title: title, content: children});
-    		return acc;
-    	}, []);
-    	var handlePaneChange = this.handlePaneChange.bind(this);
-    	var Tabs = React.createElement('ul', {}, panes.map(function(pane, i) {
-    		var isActive = (i === activePane) ? true : false;
-    		return <li className={isActive ? 'active' : null} data-pane={i} onClick={handlePaneChange}>{pane.title}</li>;
-    	}));
-
-	    return <app>
-	    	<tabs>{Tabs}</tabs>
-	    	{panes[activePane].content}
-	  	</app>;
-
-	}
-}
-
+import Tabs     from './components/tabs/Tabs';
+import PageView from './components/page-view/PageView';
+import EventEmitter from 'eventemitter3';
 
 function main() {
-    var app = document.createElement('div');
-    document.body.appendChild(app);
-    var tabs = <Tabs activePane="0">
-    	<pane title="React+SVG"><ReactSvgDemo /></pane>
-    	<pane title="Vanilla+SVG"><VanillaSvgDemo /></pane>
-    	<pane title="Famous"><div>No renderer available yet</div></pane>
-    	<pane title="Webgl"><div>No renderer available yet</div></pane>
-    </Tabs>
-    React.render(tabs, app);
+
+    var pages = <pages>
+        <page title="React+SVG"><ReactSvgDemo /></page>
+        <page title="Vanilla+SVG"><VanillaSvgDemo /></page>
+        <page title="Canvas"><div>No renderer available yet</div></page>
+        <page title="Famous"><div>No renderer available yet</div></page>
+        <page title="Webgl"><div>No renderer available yet</div></page>
+    </pages>
+
+    var tabTitles, pageContents, onTabChange, app;
+
+    var activePageEmitter = new EventEmitter();
+    tabTitles    = pages.props.children.map(function(page) { return page.props.title; });
+    pageContents = pages.props.children.map(function(page) { return page.props.children; });
+    onTabChange = function(active) { activePageEmitter.emit('change', active); };
+    
+    app = <app>
+            <Tabs active={0} titles={tabTitles} onChange={onTabChange} />
+            <PageView active={0} pages={pageContents} emitter={activePageEmitter} />
+        </app>;
+
+        
+    var appNode = document.createElement('div');
+    document.body.appendChild(appNode);
+    React.render(app, appNode);
 }
 
 main();
@@ -64,3 +51,17 @@ main();
     document.body.appendChild(vanillaDemo);
     React.render(<VanillaSvgDemo />, vanillaDemo);
 */
+
+        /*
+        var activePane = this.state.activePane;
+        var panes = this.props.children.reduce(function(acc, item) {
+            const {title, children} = item.props;
+            acc.push({title: title, content: children});
+            return acc;
+        }, []);
+        var handlePaneChange = this.handlePaneChange.bind(this);
+        var Tabs = React.createElement('ul', {}, panes.map(function(pane, i) {
+            var isActive = (i === activePane) ? true : false;
+            return <li className={isActive ? 'active' : null} data-pane={i} onClick={handlePaneChange}>{pane.title}</li>;
+        }));
+        */

@@ -1,12 +1,12 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import Scale from '../../lib/Scale';
-import listTicks from '../guide/Ticks';
-import AngularAxis from './AngularAxis';
 
-import '../demo/demo.css';
-import '../guide/axis.css';
+import Scale       from '../../scale/Scale';
+import listTicks   from '../../guide-axis/Ticks';
+import AngularAxis from '../AngularAxis';
+
+import '../../guide-axis/axis.css';
 
 export default class AngularDemo extends React.Component {
 

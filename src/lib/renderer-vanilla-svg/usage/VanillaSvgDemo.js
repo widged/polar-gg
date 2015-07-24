@@ -13,7 +13,7 @@ export default class ReactSvgDemo {
       </div>
 
       <div>
-        <h1>Shapes Renderer</h1>
+        <h1>Vanilla+SVG Shape Primitives</h1>
         <ShapesVanillaSvg/>
       </div>
 

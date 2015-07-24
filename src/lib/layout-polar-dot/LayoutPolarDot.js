@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarDot {
 
@@ -18,6 +18,7 @@ export default class LayoutPolarDot {
             var rotate = (originTheta + 0 + angular.scaleFn(d));
             var r = maxRadius * size.scaleFn(d);
             var cy = radial.scaleFn(d);
+            // renders to a dot primitive
             return {rotate: rotate, r: r, cy: cy, options: options };
         };
 

@@ -18,6 +18,40 @@ class Plot extends React.Component {
 
 }
 
+/*
+  constructor(props) {
+    super();
+    var plot = this.plot = new Plot();
+        plot.use(props.type);
+      props.children.map(function(layer, i) {
+        plot.addLayer(layer.props);
+      });
+  }
+
+    render() {
+        var plotData = this.plot.finalize({
+            data: [],
+            width: 120,
+            height: 30,
+            margin: 2   
+        });
+
+    return <plot>
+      <svg>
+        <g className="chart">
+          <circle className="background-circle"></circle>
+          <g class="guides">
+            <g class="angular axis"></g>
+            <g class="radial axis"></g>
+          </g>
+          <g className="layers">
+            <g class="geometry"></g>
+          </g>
+        </g>
+      </svg>
+    </plot>
+*/    
+
 
 class Layer extends React.Component {
 

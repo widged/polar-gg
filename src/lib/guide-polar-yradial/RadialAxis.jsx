@@ -1,8 +1,9 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import RadialTick from './RadialTick';
 import d3 from 'd3';
+
+import RadialTick from './RadialTick';
 
 export default class AngularAxis extends React.Component {
 

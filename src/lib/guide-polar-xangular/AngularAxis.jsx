@@ -3,8 +3,9 @@
 /* :TODO: delegate to Renderer */
 
 import React from 'react';
-import AngularTick from './AngularTick';
 import d3 from 'd3';
+
+import AngularTick from './AngularTick';
 
 export default class AngularAxis extends React.Component {
 

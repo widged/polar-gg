@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarBar {
 
@@ -18,7 +18,7 @@ export default class LayoutPolarBar {
             var y      = radial.scale(0);
             var width  = barWidth;
             var height = radial.scaleFn(d);
-            // renders to a rectangle
+            // renders to a rectangle primitive
             return {rotate: rotate, x: x, y: y, width: width, height: height, d: d }; 
         };
     }

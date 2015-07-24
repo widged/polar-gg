@@ -1,11 +1,10 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import d3 from 'd3';
 
-import Layout from './LayoutPolarBand';
-import Geom       from '../geom/Geom';
-import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
+import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
+import Geom    from '../../layout/Layout';
+import Layout  from '../LayoutPolarBand';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

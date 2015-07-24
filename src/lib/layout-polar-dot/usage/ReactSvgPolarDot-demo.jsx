@@ -2,10 +2,10 @@
 
 import React from 'react';
 
-import Layout from './LayoutPolarDot';
-import Geom       from '../geom/Geom';
-import RendererReactSvg from '../renderer-react-svg/RendererReactSvg';
-import Monthly    from '../plot-monthly/Monthly';
+import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
+import Geom     from '../../geom/Geom';
+import Monthly  from '../../plot-monthly/Monthly';
+import Layout   from '../LayoutPolarDot';
 
 const PlotView = RendererReactSvg.Plot;
 const LayerView = RendererReactSvg.Layer;

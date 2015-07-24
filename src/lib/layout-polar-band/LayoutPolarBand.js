@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarBand {
 
@@ -18,7 +18,7 @@ export default class LayoutPolarBand {
             var outerRadius = innerRadius + barWidth;
 
             var rotate = originTheta  + 90;
-            // renders to an arc
+            // renders to an arc primitive
             return {endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius, rotate: rotate };
         };
     }

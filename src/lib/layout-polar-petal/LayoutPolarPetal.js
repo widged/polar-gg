@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarPetal {
 
@@ -36,6 +36,7 @@ export default class LayoutPolarPetal {
                 c2 = {x: halfRadius + (r / 2), y: e.y};
             var angle2 = (d.startAngle + d.endAngle) / 2;
             var rotate = Polar.degreesFromRadians(angle2) + (originTheta + 90);
+            // renders to a petal primitive
             return {rotate: rotate, s: s,c1: c1, m: m, c2: c2, e: e };
         };
     }

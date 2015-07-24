@@ -1,6 +1,6 @@
 /* jshint esnext: true */
 
-import Polar from '../../lib/Polar';
+import Polar from '../coord-polar/Polar';
 
 export default class LayoutPolarHat {
 
@@ -18,6 +18,7 @@ export default class LayoutPolarHat {
             var baseW = 10;
             var rotate = originTheta + 90 + (angular.scale(i));
             var lines = [[0, 0], [-h, baseW], [-h, -baseW]];
+            // renders to a polyline primitive
             return {rotate: rotate, translate: (h+offset) +", 0",lines: lines };
         };
     }

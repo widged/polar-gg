@@ -1,13 +1,12 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import Scale from '../../lib/Scale';
-import RadialAxis from './RadialAxis';
-import listTicks from '../guide/Ticks';
 
-import '../demo/demo.css';
-import '../guide/axis.css';
+import Scale      from '../../scale/Scale';
+import listTicks  from '../../guide-axis/Ticks';
+import RadialAxis from '../RadialAxis';
 
+import '../../guide-axis/axis.css';
 
 export default class RadialDemo extends React.Component {
 	
