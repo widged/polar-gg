@@ -1,11 +1,23 @@
-demo > div  {
+demo section {
+	margin: 24px 0;
+}
+demo section section  {
 	display: inline-block;
 	background-color: #E7EBEE;
 	margin: 9px;
-	padding: 0px 6px;
+	padding: 6px 6px;
 }
 
-demo > div > h2  {
+demo section title  {
+	display: block;
+	font-size: 18pt;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
+
+demo section section title  {
+	display: block;
+	font-size: 14pt;
 	font-weight: 700;
 }
 

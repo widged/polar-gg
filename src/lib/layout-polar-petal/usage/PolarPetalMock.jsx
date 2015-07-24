@@ -1,19 +1,11 @@
 /* jshint esnext: true */
 
-import React from 'react';
+import Geom    from '../../layout/Layout';
+import Monthly from '../../plot-monthly/Monthly';
+import Layout  from '../LayoutPolarPetal';
 
-import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
-import Geom     from '../../layout/Layout';
-import Monthly  from '../../plot-monthly/Monthly';
-import Layout   from '../LayoutPolarPetal';
-
-const PlotView = RendererReactSvg.Plot;
-const LayerView = RendererReactSvg.Layer;
-
-
-export default class LayoutPolarPetalDemo extends React.Component {
-
-  render() {
+export default class PolarBandMock {
+  static scenario1() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
     var aes = {
       "y":{
@@ -32,9 +24,7 @@ export default class LayoutPolarPetalDemo extends React.Component {
     var layoutFn = Geom.layoutFn(Layout, aes, space, options);
     var geomData = layoutFn(data);
 
-    return <PlotView width="250" height="250" customClass="months">
-      <LayerView data={geomData} geom='petal' />
-    </PlotView>;
+    return {data: geomData, geom: 'petal', customClass: "months"};
   }
 }
 

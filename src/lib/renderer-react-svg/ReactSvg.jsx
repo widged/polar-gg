@@ -80,10 +80,10 @@ class Layer extends React.Component {
 
 
 
-export default class RendererReactSvg {
+export default class ReactSvg {
 
 
 }
 
-RendererReactSvg.Plot = Plot;
-RendererReactSvg.Layer = Layer;
+ReactSvg.Plot = Plot;
+ReactSvg.Layer = Layer;

@@ -24,14 +24,15 @@ function main() {
 
     var tabTitles, pageContents, onTabChange, app;
 
+    var activePage = 2;
     var activePageEmitter = new EventEmitter();
     tabTitles    = pages.props.children.map(function(page) { return page.props.title; });
     pageContents = pages.props.children.map(function(page) { return page.props.children; });
     onTabChange = function(active) { activePageEmitter.emit('change', active); };
     
     app = <app>
-            <Tabs active={0} titles={tabTitles} onChange={onTabChange} />
-            <PageView active={0} pages={pageContents} emitter={activePageEmitter} />
+            <Tabs active={activePage} titles={tabTitles} onChange={onTabChange} />
+            <PageView active={activePage} pages={pageContents} emitter={activePageEmitter} />
         </app>;
 
         

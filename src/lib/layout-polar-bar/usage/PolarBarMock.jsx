@@ -1,20 +1,12 @@
 /* jshint esnext: true */
 
-import React from 'react';
-import d3 from 'd3';
-
-import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
 import Geom    from '../../layout/Layout';
+import Monthly from '../../plot-monthly/Monthly';
 import Layout  from '../LayoutPolarBar';
 
-const PlotView = RendererReactSvg.Plot;
-const LayerView = RendererReactSvg.Layer;
-
-
-export default class LayoutPolarBarDemo extends React.Component {
-
-  render() {
-    var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
+export default class PolarBandMock {
+  static scenario1() {
+   var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
     var aes = {
       "y":{
         type   : "angular",
@@ -37,10 +29,7 @@ export default class LayoutPolarBarDemo extends React.Component {
 
     var layoutFn = Geom.layoutFn(Layout, aes, space, options);
     var geomData = layoutFn(data);
-    
-    return <PlotView width="250" height="250">
-        <LayerView data={geomData} geom='rect' />
-    </PlotView>;
+    return {data: geomData, geom: 'rect'};
   }
 }
 

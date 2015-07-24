@@ -4,7 +4,7 @@ import React from 'react';
 import RendererSvg from '../RendererSvg';
 import PrimitiveMocks from './PrimitiveMocks';
 
-export default class RendererReactSvgDemo extends React.Component {
+export default class SvgDemo extends React.Component {
 
   render() {
     function renderShape(data, primitive) {
