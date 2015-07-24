@@ -3,8 +3,6 @@
 import RendererSvg from '../shapes-svg/RendererSvg';
 
 
-
-
 class Plot {
   render() {
     const {width, height, children, customClass} = this.props;
@@ -18,8 +16,6 @@ class Plot {
     </svg>`
   }
 }
-
-
 
 
 class Layer {
@@ -47,32 +43,6 @@ class Layer {
   }
 }
 
-
-
-
-class Group {
-
-  static augmentProps(props, i, style, options) {
-    props.idx = i; 
-    props.key = 'gi_' + i; 
-    props.style = style;
-    props.options = options; 
-    return props;
-  }
-
-  render() {
-    var {data, shape, options} = this.props;
-    var renderer = RendererSvg[shape];
-
-    var renderItem = function(item, i) {
-      var {type, props} = renderer(item);
-      props = Group.augmentProps(props, i, item.style, options);
-      return VanillaSvg.createElementOfTag(type, props);
-    };
-
-    return VanillaSvg.createElement('g', {}, data.map(renderItem));
-  }
-}
 
 
 

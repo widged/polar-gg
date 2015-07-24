@@ -79,29 +79,6 @@ class Layer extends React.Component {
 }
 
 
-class Group extends React.Component {
-
-  static augmentProps(props, i, style, options) {
-    props.idx = i; 
-    props.key = 'gi_' + i; 
-    props.style = style;
-    props.options = options; 
-    return props;
-  }
-
-  render() {
-    var {data, shape, options} = this.props;
-    var renderer = RendererSvg[shape];
-
-    var renderItem = function(item, i) {
-      var {type, props} = renderer(item);
-      props = Group.augmentProps(props, i, item.style, options);
-      return React.createElement(type, props);
-    };
-
-    return React.createElement('g', {}, data.map(renderItem));
-  }
-}
 
 export default class RendererReactSvg {
 
@@ -110,4 +87,3 @@ export default class RendererReactSvg {
 
 RendererReactSvg.Plot = Plot;
 RendererReactSvg.Layer = Layer;
-RendererReactSvg.Group = Group;

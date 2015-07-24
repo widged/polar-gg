@@ -3,7 +3,6 @@
 import React from 'react';
 import Demo       from '../../../components/demo/Demo';
 
-import ShapesReactSvg   from './Renderer-demo';
 import AngularGuide  from '../../guide-polar-xangular/usage/AngularGuide-demo';
 import RadialGuide  from '../../guide-polar-yradial/usage/RadialGuide-demo';
 // Layouts
@@ -32,18 +31,8 @@ export default class ReactSvgDemo extends React.Component {
 
     return <renderer-demo>
       <div>
-        <h1>Plots</h1>
-        Coming Soon!
-      </div>
-
-      <div>
-        <h1>React+SVG Shape Primitives</h1>
-        <ShapesReactSvg/>
-      </div>
-
-      <div>
         <h1>Scales</h1>
-        Angular, Radial, Color at the moment
+        Angular, Radial, Color
       </div>      
 
       <div>
@@ -55,6 +44,12 @@ export default class ReactSvgDemo extends React.Component {
         <h1>Geom Layouts</h1>
         <Demo>{[PolarArea,PolarBand,PolarBar,PolarDonut,PolarDot,PolarHat,PolarLine,PolarPetal,PolarPie].map(h3)}</Demo> 
       </div>
+
+      <div>
+        <h1>Plots</h1>
+        Coming Soon!
+      </div>
+
 
   	</renderer-demo>;
 

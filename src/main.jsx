@@ -3,6 +3,7 @@
 import './main.css';
 
 import React from 'react';
+import SvgDemo        from './lib/shapes-svg/usage/SvgDemo';
 import ReactSvgDemo   from './lib/renderer-react-svg/usage/ReactSvgDemo';
 import VanillaSvgDemo from './lib/renderer-vanilla-svg/usage/VanillaSvgDemo';
 
@@ -13,6 +14,7 @@ import EventEmitter from 'eventemitter3';
 function main() {
 
     var pages = <pages>
+        <page title="SVG primitives"><SvgDemo /></page>
         <page title="React+SVG"><ReactSvgDemo /></page>
         <page title="Vanilla+SVG"><VanillaSvgDemo /></page>
         <page title="Canvas"><div>No renderer available yet</div></page>

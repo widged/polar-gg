@@ -3,7 +3,7 @@
 import React from 'react';
 
 import RendererReactSvg from '../../renderer-react-svg/RendererReactSvg';
-import Geom     from '../../geom/Geom';
+import Geom     from '../../layout/Layout';
 import Monthly  from '../../plot-monthly/Monthly';
 import Layout   from '../LayoutPolarHat';
 
