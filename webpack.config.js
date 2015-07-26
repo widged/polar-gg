@@ -37,7 +37,7 @@ if(TARGET === 'build') {
       loaders: [
         {
           test: /\.jsx?$/,
-          loader: 'babel?stage=1',
+          loader: 'babel?stage=0',
           include: APP_PATH
         }
       ]

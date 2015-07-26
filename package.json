@@ -1,6 +1,6 @@
 {
   "name": "react-es6-gg",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Grammar of Graphics in react + ecmascript 6",
   "main": "index.js",
   "author": "Marielle Lange",
@@ -16,7 +16,10 @@
   "scripts": {
     "build": "TARGET=build webpack",
     "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "test": "mocha --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx"
+    "test": "mocha --reporter spec --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx"
+  },
+  "engines": {
+    "node": ">=0.12.6"
   },
   "dependencies": {
     "d3": "^3.5.6",

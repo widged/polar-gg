@@ -17,17 +17,17 @@ class FN {
     }, []).join('; ');
   }
 
-  static transferProperties(rootEl, props) {
+  static transferProperties(node, props) {
       Object.keys(props).forEach(function(k) {
         var p = props[k];
         if(k === 'style') { p = FN.convertKeysToDash(p); }
-        rootEl.setAttribute(k, p);
+        node.setAttribute(k, p);
       });
   }
 
-  static appendChildren(rootEl, children) {
+  static appendChildren(node, children) {
       (children || []).forEach(function(d) {
-        rootEl.appendChild(d);
+        node.appendChild(d);
       });
   }
 
@@ -51,11 +51,11 @@ class FN {
 
 
   static createElementOfTag(type, props, ...rest) {
-      var rootEl = FN.createElementNS(type);
-      FN.transferProperties(rootEl, props);
+      var node = FN.createElementNS(type);
+      FN.transferProperties(node, props);
       var children = FN.childrenFromRest(rest);
-      FN.appendChildren(rootEl, children);
-      return rootEl;
+      FN.appendChildren(node, children);
+      return node;
   }
 
 
@@ -68,6 +68,14 @@ class FN {
 }
 
 export default class Vanilla { 
+
+/**
+ * Adds commas to a number
+ * @param {object} type the type of element to create
+ * @param {string} props the properties to transfer to the created element.
+ * @param {...list} children the list of chilren to append to the created element.
+ * @return {node} a dom node
+ */  
   static createElement(type, props, ...children) {
      if(typeof type === 'string') {
       return FN.createElementOfTag(type, props, children);
