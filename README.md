@@ -1,4 +1,4 @@
-# react-gg
+# react-polar-gg
 
 !!WIP!!
 
