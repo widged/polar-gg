@@ -16,7 +16,7 @@
   "scripts": {
     "build": "TARGET=build webpack",
     "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "test": "mocha --reporter spec --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx"
+    "test": "mocha --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx"
   },
   "engines": {
     "node": ">=0.12.6"

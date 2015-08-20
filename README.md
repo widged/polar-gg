@@ -18,10 +18,6 @@ Plotting monthly statistics on different coordinates
 
 ![months preview](months.png "Months Preview")
 
-## Installation
-
-    npm install @jdaudier/number-formatter
-
 ## Develop
 
     npm start
