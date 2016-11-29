@@ -6,13 +6,12 @@ export default  class PageView extends React.Component {
 
     constructor(props) {
         super();
-        var {active, emitter} = props;
+        var {active,onActiveChange} = props;
         this.state = {active: active};
-        emitter.on('change', this.activeChange.bind(this));
-    }
-
-    activeChange(active) {
-        this.setState({active: active})
+        onActiveChange((active) => {
+            console.log('ACTIVE', active)
+            this.setState({active: active})
+        })
     }
 
     render() {

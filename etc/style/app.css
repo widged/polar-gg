@@ -1,0 +1,39 @@
+html {
+  margin: 3px 12px;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: x-small;
+  align-items: baseline;
+}
+
+div.boxed {
+  margin: 3px 9px;
+  margin-left: 0;
+  padding: 0 3px;
+  background-color: rgba(160, 176, 185, 0.1);
+}
+
+/* <span class="icon icon-markunread"></span> */
+div.clipboard {
+}
+
+
+div.clipboard::before {
+  display: inline-block;
+  content: "";
+  -webkit-mask: url('../pix/17413.svg') no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  background-color: #0095f5;
+
+  color: #0095f5;
+  width: 12px;
+  height: 12px;
+}
+
+div.clipboard::after {
+  color: #0095f5;
+  content: "Clipboard";
+}

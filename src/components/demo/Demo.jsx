@@ -1,7 +1,5 @@
 /* jshint esnext: true */
 
-import '../demo/demo.css';
-
 import React from 'react';
 
 class Section extends React.Component {

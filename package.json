@@ -1,47 +1,23 @@
 {
-  "name": "react-polar-gg",
-  "version": "0.0.1",
-  "description": "Grammar of Graphics in react + ecmascript 6",
-  "main": "index.js",
-  "author": "Marielle Lange",
-  "license": "MIT",
-  "keywords": [
-    "gg",
-    "grammar of graphics",
-    "visualisation",
-    "reactjs",
-    "es6",
-    "es2015"
-  ],
-  "scripts": {
-    "build": "TARGET=build webpack",
-    "start": "TARGET=dev webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "test": "mocha --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx"
-  },
-  "engines": {
-    "node": ">=0.12.6"
-  },
+  "name": "usage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.es6.js",
   "dependencies": {
-    "d3": "^3.5.6",
-    "eventemitter3": "^1.1.1",
-    "jsdom": "^3.1.1",
-    "react": "^0.13.3"
+    "d3-scale": "^1.0.4",
+    "d3-shape": "^1.0.4",
+    "html-webpack-plugin": "^2.24.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   },
-  "devDependencies": {
-    "babel-core": "^5.6.18",
-    "babel-loader": "^5.2.2",
-    "css-loader": "^0.15.1",
-    "html-webpack-plugin": "^1.5.2",
-    "node-libs-browser": "^0.5.2",
-    "react-hot-loader": "^1.2.7",
-    "style-loader": "^0.12.3",
-    "webpack": "^1.10.1",
-    "webpack-dev-server": "^1.10.1",
-    "webpack-merge": "^0.1.2",
-    "jsdom": "^3.1.2",
-    "mocha": "^2.2.5",
-    "should": "3.2.0-beta1",
-    "requirejs": "2.1.11",
-    "assert": "1.1.1"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx",
+    "clean:dist": "rimraf dist",
+    "watch": "tsc -w",
+    "dev": "env-electron/electron.command & npm run watch",
+    "bundle": "webpack"
+  },
+  "author": "Marielle <mlange@widged.com> (http://widged.com)",
+  "license": "ISC"
 }

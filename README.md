@@ -4,11 +4,9 @@
 
 !!WIP!!
 
-Grammar of graphics inspired visualisations for React
+Grammar of graphics inspired visualisations for VanillaJS and React.
 
-Kite library ported to react 
-
-https://github.com/widged/kite
+[Kite library](https://github.com/widged/kite) ported to react
 
 ## Preview
 
@@ -16,23 +14,23 @@ https://github.com/widged/kite
 
 Plotting monthly statistics on different coordinates
 
-![months preview](months.png "Months Preview")
+![months preview](preview-months.png "Months Preview")
 
 ## Develop
 
-    npm start
+    npm run start
 
 ## Build
 
-     npm build
+     npm run build
      open build/index.html
 
 ## Usage
 
-     npm build
+     npm run build
      open build/index.html
 
-See 
+See
 * renderer-react-svg/usage
 * renderer-vanilla-svg/usage
 
