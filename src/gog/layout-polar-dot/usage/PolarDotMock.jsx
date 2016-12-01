@@ -5,7 +5,7 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarDot';
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarDotMock extends MockScenarios {
 
   static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
@@ -23,7 +23,7 @@ export default class PolarBandMock extends MockScenarios {
         "type"   : "radial",
         coord: { domain : [0, 14], range: [0, 1] },
         dataFn: function(d) { return d[1]; }
-      }      
+      }
     };
     var options  = {dotsize: 40, maxSize: 50, shape: 'circle'};
     var layoutFn = Layout.geom(GeomLayout, aes, space, options);

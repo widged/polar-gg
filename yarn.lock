@@ -140,11 +140,25 @@ d3-scale:
     d3-time "1"
     d3-time-format "2"
 
+d3-selection:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.0.3.tgz#e63e51416172427854c1bcdfa066eb5fe872c108"
+
+d3-selection@^0.6.10:
+  version "0.6.12"
+  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-0.6.12.tgz#e769730f86e5dccc2b7107503209ffe50ba899ab"
+
 d3-shape:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.0.4.tgz#145ee100ccbec42f8e3f1996cd05c786f79fe1c6"
   dependencies:
     d3-path "1"
+
+d3-svg:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/d3-svg/-/d3-svg-0.2.0.tgz#3d28cbe20e09e17de6af656b4d3ea95d0fe9d2ba"
+  dependencies:
+    d3-selection "^0.6.10"
 
 d3-time-format@2:
   version "2.0.3"

@@ -4,7 +4,7 @@ g.axis text{
     -1px 0px 0 #fff,
     1px -1px 0 #fff,
     -1px 1px 0 #fff,
-    1px 1px 0 #fff; 
+    1px 1px 0 #fff;
 }
 
 g.axis .mark {
@@ -40,4 +40,3 @@ g.axis.angular .ticks .major .guide {
     stroke-width: 1px;
     stroke-dasharray: none;
 }
-

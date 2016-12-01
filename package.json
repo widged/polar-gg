@@ -5,7 +5,9 @@
   "main": "main.es6.js",
   "dependencies": {
     "d3-scale": "^1.0.4",
+    "d3-selection": "^1.0.3",
     "d3-shape": "^1.0.4",
+    "d3-svg": "^0.2.0",
     "html-webpack-plugin": "^2.24.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"

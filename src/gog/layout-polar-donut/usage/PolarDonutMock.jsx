@@ -5,7 +5,7 @@ import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarDonut';
 import MockScenarios from '../../../usage/MockScenarios';
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarDonutMock extends MockScenarios {
 
   static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
@@ -18,7 +18,7 @@ export default class PolarBandMock extends MockScenarios {
       "y":{
         type   : "angular",
         coord: {domain: [0, 14], range: [0, 360]},
-        dataFn : function(d) { return d[1]; }      
+        dataFn : function(d) { return d[1]; }
       }
     };
     var options = {};

@@ -5,7 +5,6 @@ import Demo    from '../../components/demo/Demo.jsx';
 import Vanilla    from '../Vanilla';
 import Plot from '../PlotVanillaSvg';
 
-
 // Layouts
 import PolarAreaMock  from '../../gog/layout-polar-area/usage/PolarAreaMock.jsx';
 import PolarBandMock  from '../../gog/layout-polar-band/usage/PolarBandMock.jsx';
@@ -17,12 +16,11 @@ import PolarLineMock  from '../../gog/layout-polar-line/usage/PolarLineMock.jsx'
 import PolarPetalMock from '../../gog/layout-polar-petal/usage/PolarPetalMock.jsx';
 import PolarPieMock   from '../../gog/layout-polar-pie/usage/PolarPieMock.jsx';
 
-
-export default class ReactSvgDemo extends React.Component {
+export default class VanillaSvgDemo extends React.Component {
   render() {
     var Section = Demo.Section;
 
-    function geom(Mock) {
+    function geom(Mock, i) {
         var {data, geom, customClass} = Mock.scenario();
         const title = Mock.name;
 
@@ -30,21 +28,21 @@ export default class ReactSvgDemo extends React.Component {
           Plot,
           {width: 250, height: 250, customClass: customClass, layers: [{data: data, geom: geom}]}
         );
-        return <Section title={title}>
+        return <Section key={"gm"+i} title={title}>
           <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />
         </Section>;
    }
 
     return <Demo>
-      <Section title="Scale">
+      <Section key="s1" title="Scale">
         Angular, Radial, Color
       </Section>
 
-      <Section title="Guides">
+      <Section key="s2" title="Guides">
         Coming Soon!
       </Section>
 
-      <Section title="Geom Layouts">
+      <Section key="s3" title="Geom Layouts">
         {[
           PolarAreaMock,PolarBandMock,PolarBarMock,
           PolarDonutMock,PolarDotMock,PolarHatMock,
@@ -52,7 +50,7 @@ export default class ReactSvgDemo extends React.Component {
         ].map(geom)}
       </Section>
 
-      <Section title="Plots">
+      <Section key="s4" title="Plots">
         Coming Soon!
       </Section>
     </Demo>;

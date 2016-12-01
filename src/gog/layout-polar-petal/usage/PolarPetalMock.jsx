@@ -5,7 +5,7 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarPetal';
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarPetalMock extends MockScenarios {
 
   static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};

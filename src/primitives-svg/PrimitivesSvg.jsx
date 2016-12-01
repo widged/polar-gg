@@ -1,67 +1,54 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import {arc, line, radialLine} from 'd3-shape';
+import arc from '../lib/path-geometries/arc';
+import petal from '../lib/path-geometries/petal';
+import polyline from '../lib/path-geometries/polyline';
+import polylineradial from '../lib/path-geometries/polylineradial';
 
-let FN = { };
+var PATH = {arc, petal, polyline, polylineradial};
 
-FN.arcFn = arc()
-      .startAngle(function(d)  { return d.startAngle || 0; })
-      .endAngle(function(d)    { return d.endAngle; })
-      .innerRadius(function(d) { return d.innerRadius || 0; })
-      .outerRadius(function(d) { return d.outerRadius; });
+var FN = {};
 
-FN.radialFn = radialLine()
-      .radius(function(d) { return d.radius; })
-      .angle(function(d) { return d.angle; });
+FN.dot = (props) => {
+  const {cx, cy, r} = props;
+  return {type: 'circle', props: {  cx : cx, cy : cy,  r : r }};
+};
 
-export default class RendererSvg {
+FN.dotsquare = (props) => {
+  const {cx, cy, r} = props;
+  var size = r * 2;
+  return {type: 'rect', props: { x : cx - r, y : cy - r, width : size, height : size }};
+};
 
-    static arc(props) {
-      const {startAngle, endAngle, innerRadius, outerRadius, rotate} = props;
-      const transform  = 'rotate('+ (rotate || 0) +')';
-      const d          = FN.arcFn({startAngle: startAngle, endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius});
-      return {type: 'path', props: {d: d, transform: transform}};
-    }
+FN.rect = (props) => {
+  const {x, y, width, height} = props;
+  return {type: 'rect', props: { x: x, y: y, width: width, height: height }};
+};
 
-    static dot(props) {
-      const {cx, cy, r, rotate} = props;
-      const transform  = 'rotate('+ (rotate || 0) +')';
-      return {type: 'circle', props: {  cx : cx, cy : cy,  r : r, transform: transform }};
-    }
+const svgString = (anchors) => {
+  return anchors.map((d) => {
+    return d.svgString(); }).join('');
+};
 
-    static dotsquare(props) {
-      const {cx, cy, r, rotate} = props;
-      var size = r * 2;
-      var transform  = 'rotate('+ (rotate || 0) +')';
-      return {type: 'rect', props: { x : cx - r, y : cy - r, width : size, height : size, transform: transform }};
-    }
 
-    static petal(props) {
-      var {rotate, s, e, c1, c2, m} = props;
-      var d          = "M0,0L" + s.x + "," + s.y + "Q" + c1.x + "," + c1.y + " " + m.x + "," + m.y + "L" + m.x + "," + m.y + "Q" + c2.x + "," + c2.y + " " + e.x + "," + e.y + "Z";
-      var transform  = 'rotate('+ (rotate || 0) +')';
-      return {type: 'path', props: { d: d, transform: transform }};
-    }
+FN.render = (geom, d) => {
+  var shape;
+  if(FN.hasOwnProperty(geom)) {
+    shape = FN[geom](d);
+  } else {
+    var pth = PATH[geom](d);
+    shape = {type: 'path', props: { d: svgString(pth) }};
+  }
+  var {type, props} = shape;
+  var {rotate, translate} = d;
+  var transform = [];
+  if(rotate) { transform.push('rotate('+ (rotate || 0) +')'); }
+  if(translate) { transform.push('translate('+ (translate || "0, 0") +')'); }
+  props.transform = transform.join(', ');
+  return {type, props};
+};
 
-    static rect(props) {
-      const {x, y, width, height, rotate, translate} = props;
-      var transform = 'rotate('+ (rotate || 0) +')';
-      return {type: 'rect', props: { x: x, y: y, width: width, height: height, transform: transform }};
-    }
 
-    static polyline(props) {
-      var {rotate, translate, lines} = props;
-      var transform  = 'rotate('+ (rotate || 0) +'), translate('+ (translate || "0, 0") +')';
-      var d          = 'M'+ lines.join('L')+'Z';
-      return {type: 'path', props: { d: d, transform: transform }};
-    }
 
-    static polylineradial(props) {
-      var {rotate, radiallines} = props;
-      var transform  = 'rotate(' + (rotate || 0) + ')';
-      var d          = FN.radialFn(radiallines);
-      return {type: 'path', props: { d: d, transform: transform }};
-    }
-
-}
+export default FN;

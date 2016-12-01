@@ -5,6 +5,14 @@ import Demo        from '../../components/demo/Demo.jsx';
 import Primitives  from '../PrimitivesSvg.jsx';
 import PrimitiveMocks from './PrimitiveMocks';
 
+const renderShape = (primitive) => {
+  return (d, i) => {
+        var out = Primitives.render(primitive, d);
+        out.props.style = d.style;
+        return React.createElement(out.type, Object.assign(out.props, {key: 'k'+i}));
+  };
+};
+
 class SvgDemo extends React.Component {
 
   constructor(props) {
@@ -14,23 +22,15 @@ class SvgDemo extends React.Component {
     };
   }
 
-  renderShape(data, primitive) {
-    var shapes =  data.map(function(d, i) {
-        var out = Primitives[primitive](d);
-        out.props.style = d.style;
-        return React.createElement(out.type, Object.assign(out.props, {key: 'k'+i}));
-    });
-    return shapes;
-  }
-
   renderItem(primitive, i) {
     var shapes = PrimitiveMocks[primitive]();
     var title = primitive;
+    var render = renderShape(primitive);
     var Section = Demo.Section;
     return <Section title={title} key={"k"+i}>
       <svg>
         <g>
-        {this.renderShape(shapes, primitive)}
+        {shapes.map(render)}
         </g>
       </svg>
     </Section>;

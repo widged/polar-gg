@@ -5,8 +5,8 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarHat';
 
-export default class PolarBandMock extends MockScenarios {
-  
+export default class PolarHatMock extends MockScenarios {
+
   static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
     var aes = {
@@ -27,7 +27,7 @@ export default class PolarBandMock extends MockScenarios {
 
     var layoutFn = Layout.geom(GeomLayout, aes, space, options);
     var geomData = layoutFn(data);
-    
+
     return {data: geomData, geom: 'polyline', customClass: "months"};
   }
 

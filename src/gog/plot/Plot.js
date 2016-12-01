@@ -1,34 +1,5 @@
 /* jshint esnext: true */
 
-import d3 from 'd3';
-
-class D3Utils {
-    static getScale(coord) {
-        return d3.scale.linear().domain(coord.domain).range(coord.range);
-    }
-
-    static validateDomain(domain, layers, valueFn) {
-        if(domain === null) {
-            var data, extent;
-            (layers || []).forEach(function(layer, i) {
-                var extent =  d3.extent((layer.data() || []).map(valueFn));
-                if(!domain) { domain = extent; }
-                if(domain[0] > extent[0]) { domain[0] = extent[0]; }
-                if(domain[1] < extent[1]) { domain[1] = extent[1]; }
-            });
-        }
-        return domain;
-    }
-}
-
-class utils {
-	static shallowCopy(a) {
-		var b = {};
-		Object.keys(a).forEach(function(key, dimIdx) { b[key] = a[key]; });
-		return b;
-	}	
-}
-
 export default class Plot {
 
 	constructor() {
@@ -68,6 +39,13 @@ export default class Plot {
 	static finalizeFn(typeAesthetics, overrideAesthetics, space, layers, interactives) {
 
 		/*
+
+    const shallowCopy = (a) => {
+      var b = {};
+      Object.keys(a).forEach(function(key, dimIdx) { b[key] = a[key]; });
+      return b;
+    }
+
 			angular
 			aes.scale = scale(x) { return output(x); }
 			space = {height: 250, width: 250, margin: 0, radius: 115, originTheta: 0}
@@ -109,39 +87,39 @@ export default class Plot {
 			aesx: { // angular
 				guides: [
 					AngularGuide{
-						config: function(d) {}, 
-						scale: function(d) {}, 
-						space: function(d) {},  
-						ticks: function(d) {}, 
+						config: function(d) {},
+						scale: function(d) {},
+						space: function(d) {},
+						ticks: function(d) {},
 						type: "axis"
 					}
-				], 
+				],
 				validateRange: function(range, space) {}
 			}
 			aesy: { // radial
 				guides: [
 					RadialAxis{
-						config: function(d) {}, 
-						scale: function(d) {}, 
-						space: function(d) {},  
-						ticks: function(d) {}, 
+						config: function(d) {},
+						scale: function(d) {},
+						space: function(d) {},
+						ticks: function(d) {},
 						type: "axis"
 					}
-				], 
+				],
 				validateRange: function(range, space) {}
-	
+
 			}
 		}
 
 		overrideAesthetics : {
 			aesx: {
-				coord : {domain : [0,14], range: [0, 360], scale: 'linear'}, 
-				ticks : {data, majorQty: 2, majorStep: 2, minorQty: 1, minorStep: 1, perimeter: 14}, 
+				coord : {domain : [0,14], range: [0, 360], scale: 'linear'},
+				ticks : {data, majorQty: 2, majorStep: 2, minorQty: 1, minorStep: 1, perimeter: 14},
 				valueFn : function(d) {}
 			},
 			aesy: {
-				coord : {domain : [0,5], range: [0, 115], scale: 'linear'}, 
-				ticks : {axisTheta: 0, showCircle: true}, 
+				coord : {domain : [0,5], range: [0, 115], scale: 'linear'},
+				ticks : {axisTheta: 0, showCircle: true},
 				valueFn : function(d) {}
 			},
 			fill : {coord: {domain : [0,3], range: ['red', 'blue'], scale: 'linear'}, valueFn: function(d) {} }
@@ -173,6 +151,27 @@ export default class Plot {
 		*/
 
 	/*
+
+  import {linearInterpolation}    from '../../lib/interpolation';
+
+    const validateDomain = (domain, layers, valueFn) => {
+        if(domain === null) {
+            var data, extent;
+            (layers || []).forEach(function(layer, i) {
+                var extent =  d3.extent((layer.data() || []).map(valueFn));
+                if(!domain) { domain = extent; }
+                if(domain[0] > extent[0]) { domain[0] = extent[0]; }
+                if(domain[1] < extent[1]) { domain[1] = extent[1]; }
+            });
+        }
+        return domain;
+    }
+
+    const getScale = (coord) =>  {
+        return linearInterpolation(coord.domain, coord.range);
+    }
+
+
         var aesthetics = {};
         Object.keys(typeAesthetics).forEach(function(key, dimIdx) {
 
@@ -236,7 +235,7 @@ export default class Plot {
             interactive.mountIn(svgNode);
             interactive.activate();
 
-        });		
+        });
 */
 	}
 

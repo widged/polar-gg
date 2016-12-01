@@ -13,14 +13,15 @@ export default class Plot extends Component {
             //
 
 
-   return <svg width={width} height={height}>
-      <g className={classes} transform={transform}>
-        {layers.map(({data, geom}) => {
-          console.log('layer')
-          return (<Layer data={data} geom={geom} />);
-        })}
-      </g>
+   return (
+     <svg width={width} height={height}>
+        <g className={classes} transform={transform}>
+          {layers.map(({data, geom}, i) => {
+            return (<Layer key={"k"+i} data={data} geom={geom} />);
+          })}
+        </g>
     </svg>
+    );
   }
 
 }

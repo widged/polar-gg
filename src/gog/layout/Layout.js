@@ -15,9 +15,9 @@ class FN {
     return function(d, idx) {
         return Object.keys(styleVariants).reduce(function(acc, key) {
             var fn = styleVariants[key].scaleFn;
-            if(FN.isStyle(key) && typeof fn === 'function') { 
+            if(FN.isStyle(key) && typeof fn === 'function') {
               if(!acc) { acc = {}; }
-              acc[key] = fn(d, idx); 
+              acc[key] = fn(d, idx);
             }
             return acc;
         }, null);
@@ -46,7 +46,7 @@ export default class Layout {
 
     return function(data) {
       if(typeof reduceFn === 'function') { data = reduceFn(data); }
-      return data.map(function(d, i) {
+      return (data || []).map(function(d, i) {
         var obj    = layoutFn(d, i);
         obj.style  = styleFn(d, i);
         return obj;

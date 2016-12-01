@@ -1,10 +1,9 @@
 require.install('cartesian/VerticalAxis', function(require, exports, module) {
 
-    var d3          = require('d3');
-    var AccessMaker = require('AccessMaker');
+    var {select} = require('d3-selection');
+    var svg      = require('d3-svg');
 
     var FN = {};
-
 
     var Class = function CartesianVerticalAxis() {
 
@@ -23,7 +22,7 @@ require.install('cartesian/VerticalAxis', function(require, exports, module) {
 
         instance.mountIn = function(rootNode) {
 
-            var axisNode = d3.select(rootNode);
+            var axisNode = select(rootNode);
 
             var scale  = state.scale;
             var space  = state.space;

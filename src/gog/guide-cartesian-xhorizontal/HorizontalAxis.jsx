@@ -1,6 +1,6 @@
 require.install('cartesian/HorizontalAxis', function(require, exports, module) {
 
-    var d3          = require('d3');
+    var {select} = require('d3-selection');
     var AccessMaker = require('AccessMaker');
 
     var FN = {};
@@ -27,7 +27,7 @@ require.install('cartesian/HorizontalAxis', function(require, exports, module) {
             var space        = state.space;
             var ticks        = state.ticks;
 
-            var axisNode = d3.select(rootNode);
+            var axisNode = select(rootNode);
             var currentLoc = function(d, i){ return (scale(d.value)); };
 
             if(!ticks.data) { ticks.data =  Class.ticks(ticks); }
@@ -76,7 +76,7 @@ require.install('cartesian/HorizontalAxis', function(require, exports, module) {
                     'class': 'axis-text',
                     x: currentLoc,
                     dy: '.35em'
-                    
+
                 })
                 .style({'text-anchor': 'middle' })
                 .text(function(d, i) { return d.text;  });

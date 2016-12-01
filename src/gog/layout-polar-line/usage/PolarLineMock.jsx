@@ -5,9 +5,9 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarLine';
 
-import {range} from "d3-array";
+import range from "../../../lib/range";
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarLineMock extends MockScenarios {
 
   static scenario_default() {
     var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};
@@ -31,7 +31,7 @@ export default class PolarBandMock extends MockScenarios {
     var geomData = layoutFn(data);
 
     var gpData = [{radiallines: geomData, style: {fill: 'none', stroke: 'blue'}}];
-    
+
     return {data: gpData, geom: 'polylineradial'};
   }
 

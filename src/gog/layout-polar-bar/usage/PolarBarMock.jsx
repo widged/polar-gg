@@ -5,9 +5,9 @@ import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarBar';
 import MockScenarios from '../../../usage/MockScenarios';
 
-import {range} from "d3-array";
+import range from "../../../lib/range";
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarBarMock extends MockScenarios {
 
   static scenario_default() {
    var space = {"height":250,"width":250,"margin":0,"radius":115,"originTheta":0};

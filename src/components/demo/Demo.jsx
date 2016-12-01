@@ -12,8 +12,7 @@ class Section extends React.Component {
   }
 }
 
-
-export default  class Demo extends React.Component {
+class Demo extends React.Component {
     render() {
         var {children, className} = this.props;
         return <demo className={className}>
@@ -23,3 +22,5 @@ export default  class Demo extends React.Component {
 }
 
 Demo.Section = Section;
+
+export default Demo;

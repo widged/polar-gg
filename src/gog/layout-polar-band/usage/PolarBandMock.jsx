@@ -5,6 +5,7 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarBand';
 
+
 export default class PolarBandMock extends MockScenarios {
 
   static scenario_default() {
@@ -31,12 +32,12 @@ export default class PolarBandMock extends MockScenarios {
         "dataFn": function(d, i) { return i; }
       }
     };
-    
+
     var options = {};
     var data = [[1,4],[2,8],[3,7]];
 
     var layoutFn = Layout.geom(GeomLayout, aes, space, options);
-    var geomData = layoutFn(data); 
+    var geomData = layoutFn(data);
     return {data: geomData, geom: 'arc'};
   }
 

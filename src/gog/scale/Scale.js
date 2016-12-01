@@ -1,16 +1,17 @@
 /* jshint esnext: true */
 
-import {scaleLinear} from "d3-scale";
+import {linearInterpolation}    from '../../lib/interpolation';
 
 export default class Scale {
 
     static fromCoord(coord) {
         const type = coord.scale;
-        var out;
+        var out, out2;
         if(type === undefined || type === 'linear') {
         	if(!coord.range) { coord.range = coord.domain; }
-            out = scaleLinear().domain(coord.domain).range(coord.range);
+          out = linearInterpolation(coord.domain, coord.range);
         }
+
         return out;
     }
 

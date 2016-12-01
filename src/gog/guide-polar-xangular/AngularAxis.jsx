@@ -3,7 +3,6 @@
 /* :TODO: delegate to Renderer */
 
 import React from 'react';
-import d3 from 'd3';
 
 import AngularTick from './AngularTick.jsx';
 

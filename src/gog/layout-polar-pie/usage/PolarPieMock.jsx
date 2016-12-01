@@ -5,7 +5,7 @@ import Layout     from '../../layout/Layout';
 import Monthly    from '../../plot-monthly/Monthly';
 import GeomLayout from '../LayoutPolarPie';
 
-export default class PolarBandMock extends MockScenarios {
+export default class PolarPieMock extends MockScenarios {
 
   static scenario_default() {
     var data     = Monthly.xyFrom({ "jan": 6, "feb": 10, "mar": 12, "apr": 11, "may": 8, "jun": 4, "jul": 4, "aug": 7, "sep": 12, "oct": 13, "nov": 12, "dec": 8 });
@@ -20,13 +20,13 @@ export default class PolarBandMock extends MockScenarios {
       "y":{
         type   : "angular",
         coord: {domain: [0, 12], range: [0, 360]},
-        dataFn : function(d, i) { return d[0]; }      
+        dataFn : function(d, i) { return d[0]; }
       }
     };
     var options = {};
 
     var layoutFn = Layout.geom(GeomLayout, aes, space, options);
-    var geomData = layoutFn(data); 
+    var geomData = layoutFn(data);
     return {data: geomData, geom: 'polyline', customClass: "months"};
   }
 

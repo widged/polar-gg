@@ -1,7 +1,6 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import d3 from 'd3';
 
 import RadialTick from './RadialTick.jsx';
 
@@ -12,7 +11,7 @@ export default class AngularAxis extends React.Component {
       return function(d, i) {
           var r = scaleFn(d.value, i);
           return <RadialTick key={'k_'+ d.value} r={r} text={d.text} addClassName={d.addClassName} axisTheta={axisTheta} />;
-      }
+      };
     }
 
     render() {

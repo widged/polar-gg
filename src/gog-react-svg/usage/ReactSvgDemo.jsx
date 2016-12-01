@@ -23,29 +23,30 @@ export default class ReactSvgDemo extends React.Component {
   render() {
     var Section = Demo.Section;
 
-    function guide(item) {
+    function guide(item, i) {
       var el = React.createElement(item);
       var title = item.name;
-      return <Section title={title}>{el}</Section>;
+      return <Section key={"gd"+i} title={title}>{el}</Section>;
     };
 
-    function geom(Mock) {
+    function geom(Mock, i) {
         var {data, geom, customClass} = Mock.scenario();
         const title = Mock.name;
         var layers = [{data: data, geom: geom}];
-        return <Section title={title}><Plot width="250" height="250" customClass={customClass} layers={layers}/></Section>;
+        console.log(Mock)
+        return <Section key={"gm"+i} title={title}><Plot width="250" height="250" customClass={customClass} layers={layers}/></Section>;
    }
 
     return <Demo>
-      <Section title="Scale">
+      <Section key="s1" title="Scale">
         Angular, Radial, Color
       </Section>
 
-      <Section title="Guides">
+      <Section key="s2" title="Guides">
         {[AngularGuide,RadialGuide].map(guide)}
       </Section>
 
-      <Section title="Geom Layouts">
+      <Section key="s3" title="Geom Layouts">
         {[
           PolarAreaMock,PolarBandMock,PolarBarMock,
           PolarDonutMock,PolarDotMock,PolarHatMock,
@@ -53,7 +54,7 @@ export default class ReactSvgDemo extends React.Component {
         ].map(geom)}
       </Section>
 
-      <Section title="Plots">
+      <Section key="s4" title="Plots">
         Coming Soon!
       </Section>
   	</Demo>;

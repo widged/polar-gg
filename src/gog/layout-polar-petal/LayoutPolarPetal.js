@@ -2,19 +2,16 @@
 
 import Polar from '../coord-polar/Polar';
 
-import {pie} from "d3-shape";
-import {scaleSqrt} from "d3-scale";
+import pie from "../../lib/pie-segments";
+import {sqrtInterpolation}    from '../../lib/interpolation';
 
 export default class LayoutPolarPetal {
 
     static reduce(aesthetics, space, options) {
-
         var valueFn = aesthetics.x.dataFn;
-
-        return pie()
-            .sort(null)
-            .value(function(d) { 
-                return valueFn(d); });
+        return pie({
+          value: function(d) { return valueFn(d); }
+        });
     }
 
     static layout(aesthetics, space, options) {
@@ -25,9 +22,7 @@ export default class LayoutPolarPetal {
         var originTheta    = space.originTheta || 0;
         var halfRadius     = (space.radius || 125) / 2;
 
-        var sqrtScale = scaleSqrt()
-            .domain([0, 1])
-            .range([0, halfRadius]);
+        var sqrtScale = sqrtInterpolation([0, 1],[0, halfRadius]);
 
         return function(d, idx) {
             var angle = (d.endAngle - d.startAngle) / 2,
@@ -43,6 +38,5 @@ export default class LayoutPolarPetal {
             return {rotate: rotate, s: s,c1: c1, m: m, c2: c2, e: e };
         };
     }
-    
-}
 
+}

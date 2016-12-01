@@ -1,7 +1,8 @@
 /* jshint esnext: true */
 
 import React from 'react';
-import {arc, line, radialLine} from 'd3-shape';
+import arcPath from '../lib/arc-path';
+import radialLinePath from '../lib/radial-line-path';
 
 /*
 var my_awesome_script = document.createElement('script');
@@ -15,22 +16,14 @@ import twojs from 'two.js';
 
 class D3Utils { }
 
-D3Utils.arcFn = arc()
-    .startAngle(function(d)  { return d.startAngle || 0; })
-    .endAngle(function(d)    { return d.endAngle; })
-    .innerRadius(function(d) { return d.innerRadius || 0; })
-    .outerRadius(function(d) { return d.outerRadius; });
 
-D3Utils.radialFn = radialLine()
-    .radius(function(d) { return d.radius; })
-    .angle(function(d) { return d.angle; });
 
 export default class RendererSvg {
 
     static arc(props) {
       const {startAngle, endAngle, innerRadius, outerRadius, rotate} = props;
       const transform  = 'rotate('+ (rotate || 0) +')';
-      const d          = D3Utils.arcFn({startAngle: startAngle, endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius});
+      const d          = arcPath({startAngle: startAngle, endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius});
       return {type: 'path', props: {d: d, transform: transform}};
     }
 
@@ -70,7 +63,7 @@ export default class RendererSvg {
     static polylineradial(props) {
       var {rotate, radiallines} = props;
       var transform  = 'rotate(' + (rotate || 0) + ')';
-      var d          = D3Utils.radialFn(radiallines);
+      var d          = radialLinePath(radiallines);
       return {type: 'path', props: { d: d, transform: transform }};
     }
 
