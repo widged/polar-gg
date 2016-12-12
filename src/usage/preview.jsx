@@ -4,26 +4,28 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 // import PrimitivesTwo        from '../primitives-twojs/usage/TwoDemo.jsx';
-import PrimitivesSvg        from '../primitives-svg/usage/SvgDemo.jsx';
-import ReactSvgDemo   from '../gog-react-svg/usage/ReactSvgDemo.jsx';
-import VanillaSvgDemo from '../gog-vanilla-svg/usage/VanillaSvgDemo';
+import GeomsDemos     from '../shapes/usage/PrimitiveDemo.jsx';
+import ReactSvgDemo   from '../renderer/gog-react-svg/usage/ReactSvgDemo.jsx';
+import VanillaSvgDemo from '../renderer/gog-vanilla-svg/usage/VanillaSvgDemo';
 
 import Tabs     from '../components/tabs/Tabs.jsx';
 import PageView from '../components/page-view/PageView.jsx';
+import svgSurface    from '../surface/svg-surface/svgSurface.jsx';
+import canvasSurface from '../surface/canvas-surface/canvasSurface.jsx';
+import webglSurface  from '../surface/webgl-surface/webglSurface.jsx';
 
 function main() {
 
     var pages = (
       <pages>
-        <page title="SVG primitives"><PrimitivesSvg /></page>
+        <page title="Canvas surface / primitives"><GeomsDemos surface={canvasSurface} /></page>
+        <page title="SVG surface / primitives"><GeomsDemos surface={svgSurface} /></page>
+        <page title="Webgl surface / primitives"><GeomsDemos surface={webglSurface} /></page>
         <page title="React+SVG"><ReactSvgDemo /></page>
         <page title="Vanilla+SVG"><VanillaSvgDemo /></page>
-        <page title="Canvas"><div>No renderer available yet</div></page>
-        <page title="Webgl"><div>No renderer available yet</div></page>
       </pages>
     );
     //         <!-- <page title="Twojs primitives"><PrimitivesTwo /></page> -->
-
 
     var activePage = 0;
     var activeListeners = [];
@@ -52,7 +54,6 @@ function main() {
 }
 
 main();
-
 
 /*
     var reactDemo = document.createElement('div');
