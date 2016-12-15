@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/widged/react-polar-gg.svg)](https://travis-ci.org/widged/react-polar-gg)
 
-# react-polar-gg
+# polar-gg
 
 !!WIP!!
 
