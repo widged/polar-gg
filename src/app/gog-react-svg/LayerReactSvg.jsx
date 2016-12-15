@@ -9,7 +9,6 @@ var {renderGeom} = svgSurface;
 export default class Layer extends Component {
 
   static augmentProps(props, i, style, options) {
-
     props.key = 'geom_' + i;
     props.className = 'geom g-' + i;
     props.style = style;

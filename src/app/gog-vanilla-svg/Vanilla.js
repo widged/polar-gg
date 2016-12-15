@@ -7,9 +7,7 @@ class FN {
   }
 
   static convertKeysToDash(obj) {
-
     if(!obj || typeof obj !== 'object') { return obj; }
-
     return Object.keys(obj).reduce(function(acc, key) {
       var nkey = key.replace(/[A-Z]/g, FN.camelToDash);
       acc.push('' + nkey + ':' + obj[key]);
@@ -20,6 +18,7 @@ class FN {
   static transferProperties(node, props) {
       Object.keys(props).forEach(function(k) {
         var p = props[k];
+        if(p === undefined || p === null || !p) { return; }
         if(k === 'style') { p = FN.convertKeysToDash(p); }
         node.setAttribute(k, p);
       });
@@ -40,7 +39,6 @@ class FN {
       return document.createElementNS(tagNS,tag);
   }
 
-
   static childrenFromRest(children) {
     // whenever map is used, an array of children is passed under children[0]
     if(Array.isArray(children) && children.length === 1) {
@@ -49,7 +47,6 @@ class FN {
     return children;
   }
 
-
   static createElementOfTag(type, props, ...rest) {
       var node = FN.createElementNS(type);
       FN.transferProperties(node, props);
@@ -57,7 +54,6 @@ class FN {
       FN.appendChildren(node, children);
       return node;
   }
-
 
   static createElementFromFactory(Factory, props, children) {
     var el = new Factory();

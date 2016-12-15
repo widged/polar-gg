@@ -6,15 +6,17 @@ export default class RadialMark extends React.Component {
 
     render() {
         var {text, r, axisTheta, addClassName} = this.props;
-        var rotate = 'rotate('+ (axisTheta) +')';
-        var transform = 'translate('+ r + ',' + 0 +')';
+        var rotate = 'rotate('+ (axisTheta || 0) +')';
+        var transform =  'translate('+ r + ',' + 0 +')';
 
-        return <g className={addClassName ? "tick " + addClassName : "tick"}>
+        return (
+          <g className={addClassName ? "tick " + addClassName : "tick"}>
             <circle className="guide" r={r}></circle>
-            <g transform={transform} >    
-                <text className="label" y="12" dy=".71em" rotate={rotate} style={{textAnchor: 'middle'}}>{text}</text>
+            <g transform={transform} >
+                <text className="label" y="12" dy=".71em" transform={rotate} style={{textAnchor: 'middle'}}>{text}</text>
                 <line className="mark" y2="6" x2="0"></line>
             </g>
          </g>
+       );
     }
 }

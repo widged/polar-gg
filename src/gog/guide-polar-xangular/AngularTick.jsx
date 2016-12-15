@@ -16,20 +16,23 @@ export default class AngularTick extends React.Component {
         var {labelOffset} = this.props;
         if(labelOffset === undefined || NaN(labelOffset)) { labelOffset = this.defaults.labelOffset; }
 
-        const gTransform = 'rotate(' + angle + ')';
+
+        const gTransform = 'rotate(' + (angle || 0) + ')';
 
         // line mark
         const lineX = [0, radius];
 
         // text
         const radiusOffset  = radius + labelOffset;
-        var textTransform   = 'rotate('+ ((angle <= 180 && angle > 0) ? -90 : 90) +' ' + radiusOffset + ' 0)';
+        var textTransform   = 'rotate('+ ((angle && angle <= 180 && angle > 0) ? -90 : 90) +' ' + radiusOffset + ' 0)';
 
-        return <g className={addClassName ? "tick " + addClassName : "tick"} transform={gTransform} >
+        return (
+          <g className={addClassName ? "tick " + addClassName : "tick"} transform={gTransform} >
             <line className={"guide"} x1={lineX[0]} x2={lineX[1]}></line>
-            <g transform={textTransform} >    
+            <g transform={textTransform} >
                 <text className="label"  x={radiusOffset} dy=".35em">{text}</text>
             </g>
-        </g>
+          </g>
+        );
     }
 }
