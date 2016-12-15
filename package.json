@@ -1,0 +1,27 @@
+{
+  "name": "polar-gg",
+  "version": "1.0.0",
+  "description": "Grammar of graphics inspired visualisations for VanillaJS and React.",
+  "main": "index.js",
+  "dependencies": {
+    "html-webpack-plugin": "^2.24.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^2.24.1"
+  },
+  "scripts": {
+    "test": "mocha --compilers jsx:./test/compiler.js ./src/lib/**/*test.jsx",
+    "clean:dist": "rimraf dist",
+    "watch": "tsc -w",
+    "dev": "env-electron/electron.command & npm run watch",
+    "bundle": "webpack"
+  },
+  "author": "Marielle <mlange@widged.com> (http://widged.com)",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/widged/polar-gg.git",
+    "type": "git"
+  }
+}

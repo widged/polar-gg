@@ -1,0 +1,42 @@
+g.axis text{
+    font: 10px sans-serif;
+    text-shadow:
+    -1px 0px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+g.axis .mark {
+    stroke: black;
+    stroke-width: 1px;
+    stroke-dasharray: none;
+}
+
+g.axis .ticks .guide  {
+    fill: none;
+    stroke: #777;
+    stroke-width: 1px;
+    stroke-dasharray: 1,4;
+}
+
+g.axis .ticks .label {
+    fill: #354852;
+    text-anchor: middle;
+    visibility: hidden;
+}
+
+g.axis .ticks .major .label {
+    visibility: visible;
+}
+
+g.axis .ticks .major .mark {
+    stroke: #354852;
+}
+
+
+g.axis.angular .ticks .major .guide {
+    stroke: #C4CFD4;
+    stroke-width: 1px;
+    stroke-dasharray: none;
+}

@@ -1,0 +1,19 @@
+sections-grid {
+	display: block;
+}
+
+sections-grid section {
+	display: block;
+	margin: 24px 0;
+	display: block;
+	background-color: #E7EBEE;
+	margin: 9px;
+	padding: 6px 6px;
+}
+
+sections-grid section title  {
+	display: block;
+	font-size: 18pt;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
