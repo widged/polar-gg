@@ -15,7 +15,7 @@ class RadialTick {
           h('circle', {key: 'circle', className: "guide", r }),
           h('g', {key: 'g',transform}, [
             h('text', {key: 'label', className:"label",  y:"12",  dy:".71em",  transform:rotate, style:{'textAnchor': 'middle'}}, text),
-            h('line', {key: 'mark', className: "mark", y2: 6, x2: 0})
+            h('line', {key: 'line', className: "mark", y2: 6, x2: 0})
           ])
       ]);
   }

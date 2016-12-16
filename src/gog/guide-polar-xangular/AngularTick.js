@@ -1,8 +1,10 @@
 /* jshint esnext: true */
 
+var uid = 0;
 class AngularTick  {
 
     constructor(props) {
+      uid++;
         this.props = props;
         this.defaults = { labelOffset: 6};
     }

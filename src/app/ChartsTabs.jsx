@@ -29,16 +29,6 @@ import PolarPieMock   from '../gog/layout-polar-pie/usage/PolarPieMock.jsx';
 
 const {Component} = React;
 
-const ReactCreateElement = (tag, props, children) => {
-  return React.createElement(tag, props, children);
-};
-
-const VanillaCreateElement = (tag, props, children) => {
-  return Vanilla.createElement(tag, props, children);
-};
-
-
-
 class ChartTabs extends Component {
   constructor(props) {
     super(props);
@@ -71,15 +61,15 @@ class ChartTabs extends Component {
 
       return ({type,children}, i) => {
         var kids;
-
+        /*
         if(type === "guide") {
           kids = children.map((mock, i) => {
             var guide = mock.getLayout();
             var guideR;
             if(renderer === 'react') {
-                guideR = <g className="chart" transform="translate(125,125)">{guide.render(ReactCreateElement)}</g>
+                guideR = <g className="chart" transform="translate(125,125)">{guide.render(React.createElement)}</g>
             } else {
-              var elGuide  = guide.render(VanillaCreateElement).outerHTML;
+              var elGuide  = guide.render(Vanilla.createElement).outerHTML;
               guideR = <g className="chart" transform="translate(125,125)" dangerouslySetInnerHTML={{__html: elGuide}} />;
             }
             return renderGuide(guideR, i);
@@ -91,14 +81,14 @@ class ChartTabs extends Component {
             var layers = [{data: data, geom: geom, customClass}];
             var plot;
             if(renderer === 'react') {
-              plot = <PlotReact width="250" height="250" customClass={customClass} layers={layers}/>;
+              plot = <PlotReact key={'k'+i} width="250" height="250" customClass={customClass} layers={layers}/>;
             } else if(renderer === 'vanilla') {
               var elPlot  = Vanilla.createElement( PlotVanilla, {width: 250, height: 250, customClass: customClass, layers} );
-              plot = <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />;
+              plot = <div key={'k'+i} dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />;
             }
             return <div key={'g'+i}>{plot}</div>
           })
-        } else if(type === "plots") {
+        } else */ if(type === "plots") {
           kids = children.map((plot, i) => {
              var layers = plot.geomLayers.map((Mock, i) => {
                var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
@@ -108,19 +98,29 @@ class ChartTabs extends Component {
              var plot;
              var guides = plot.guides.map((mock) => { return mock.getLayout(); })
              if(renderer === 'react') {
-               guides = guides.map((guide) => { return guide.render(ReactCreateElement); });
-               plot = <PlotReact width="250" height="250" layers={layers} guides={guides}/>;
+               guides = guides.map((guide, i) => {
+                 guide.props.key = 'g' + i;
+                 return guide.render(React.createElement);
+
+                });
+               plot = <PlotReact key={'p'+i} width="250" height="250" layers={layers} guides={guides}/>;
              } else if(renderer === 'vanilla') {
-               guides = guides.map((guide) => { return guide.render(VanillaCreateElement); });
+               guides = guides.map((guide, i) => {
+                 guide.props.key = 'g' + i;
+                 return guide.render(Vanilla.createElement);
+               });
                var elPlot  = Vanilla.createElement( PlotVanilla, {width: 250, height: 250, layers, guides} );
                plot = <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />;
              }
              return <div key={'g'+i}>{plot}</div>
           })
+        }
+            /*
         } else {
           kids = <div>{children.join(', ')}</div>
         }
-        return <div title={type} className="demo">{kids}</div>// (<GeomSeries title={geom} geom={geom} series={series} surface={surface} />);
+        */
+        return <div title={type} className="demo">{kids}</div>;
       };
   }
 
@@ -135,28 +135,3 @@ class ChartTabs extends Component {
 }
 
 export default ChartTabs;
-
-/*
-    var reactDemo = document.createElement('div');
-    document.body.appendChild(reactDemo);
-    React.render(<ReactSvgDemo />, reactDemo);
-
-
-    var vanillaDemo = document.createElement('div');
-    document.body.appendChild(vanillaDemo);
-    React.render(<VanillaSvgDemo />, vanillaDemo);
-*/
-
-        /*
-        var activePane = this.state.activePane;
-        var panes = this.props.children.reduce(function(acc, item) {
-            const {title, children} = item.props;
-            acc.push({title: title, content: children});
-            return acc;
-        }, []);
-        var handlePaneChange = this.handlePaneChange.bind(this);
-        var Tabs = React.createElement('ul', {}, panes.map(function(pane, i) {
-            var isActive = (i === activePane) ? true : false;
-            return <li className={isActive ? 'active' : null} data-pane={i} onClick={handlePaneChange}>{pane.title}</li>;
-        }));
-        */

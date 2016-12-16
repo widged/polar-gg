@@ -15,7 +15,7 @@ class RadialAxis {
   }
 
     render(h) {
-       const {ticks, scale, space} = this.props;
+       const {ticks, scale, space, key} = this.props;
        var lastTick  = ticks[ticks.length-1];
        var axisTheta = space.originTheta;
 
@@ -25,9 +25,9 @@ class RadialAxis {
            return tick.render(h);
        });
 
-      return h('g', {className: "axis yaxis radial"}, [
-        h('line', { className:"mark", x:0, x2:scale(lastTick.value)}),
-        h('g', {className: 'ticks'}, ticksH)
+      return h('g', {key, className: "axis yaxis radial"}, [
+        h('line', { key:'line', className:"mark", x:0, x2:scale(lastTick.value)}),
+        h('g', { key:'g', className: 'ticks'}, ticksH)
       ]);
   }
 }
