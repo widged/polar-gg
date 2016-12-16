@@ -11,7 +11,7 @@ export default class PlotVanillaSvg {
     const centered = 'translate(' + (width/2) + ',' + (height/2) + ')';
 
     var el = Vanilla.htmlize(`<svg width=${width} height=${height} class="chart">
-      <g transform="${centered}"></g>
+      <g transform="${centered}">
         <g key="guides" class="guides"></g>
         <g key="layers" class="layers"></g>
       </g>

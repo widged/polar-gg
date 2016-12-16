@@ -61,7 +61,6 @@ class ChartTabs extends Component {
 
       return ({type,children}, i) => {
         var kids;
-        /*
         if(type === "guide") {
           kids = children.map((mock, i) => {
             var guide = mock.getLayout();
@@ -88,7 +87,7 @@ class ChartTabs extends Component {
             }
             return <div key={'g'+i}>{plot}</div>
           })
-        } else */ if(type === "plots") {
+        } else if(type === "plots") {
           kids = children.map((plot, i) => {
              var layers = plot.geomLayers.map((Mock, i) => {
                var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
