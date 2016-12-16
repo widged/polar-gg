@@ -1,58 +1,39 @@
 /* jshint esnext: true */
 
 import Polar from '../coord-polar/Polar';
+import Layout from '../layout/PolarLayout';
 
 
-export default class LayoutPolarPetal {
+class LayoutPolarDonut extends Layout {
 
-    static reduce(aesthetics, space, options) {
+  series(data, {customClass}) {
+    var { radial, angular, originTheta, options} = this.state;
+    var {radius} = this.state.space;
+    if (radius === undefined     ) { radius = 125; }
+    var halfRadius     = radius / 2;
+    var innerRadius    = options.innerRadius || radial.scale(0.5);
+    var outerRadius    = radial.scale(1);
+    var rotate = originTheta - 90;
 
-        var radial        = aesthetics.x;
-        var angular       = aesthetics.y;
+    var currentAngle = 0;
+    var radialPercent = Layout.percentExtrapolated(data, radial.dataFn);
+    data = (data || []).map((d, idx) => {
+        d = [angular.dataFn(d), radialPercent(d)];
+        var startAngle = currentAngle,
+            endAngle = currentAngle + (angular.dataFn(d) * 360);
+        currentAngle =  endAngle;
+        var startRad = Polar.radiansFromDegrees(startAngle);
+        var endRad = Polar.radiansFromDegrees(endAngle);
 
-        var sum = 0;
-        return function(data) {
-            data.forEach(function(d, i) {
-                sum += radial.dataFn(d);
-            });
-            data = data.map(function(d, i) {
-                return [angular.dataFn(d), radial.dataFn(d) / sum];
-            });
-            return data;
-        }
-    }
-
-    static layout(aesthetics, space, options) {
-
-        var radial        = aesthetics.x;
-        var angular       = aesthetics.y;
-
-        var originTheta    = space.originTheta || 0;
-        var halfRadius     = (space.radius || 125) / 2;
-        var innerRadius    = options.innerRadius || radial.scale(0.5);
-        var outerRadius    = radial.scale(1);
-
-        var currentAngle = 0;
-        return function(d, idx) {
-            var startAngle = currentAngle,
-                endAngle = currentAngle + (angular.dataFn(d) * 360);
-
-            currentAngle =  endAngle;
-            var startRad = Polar.radiansFromDegrees(startAngle);
-            var endRad = Polar.radiansFromDegrees(endAngle);
-
-            var rotate = originTheta - 90;
-            // renders to an arc primitive
-            return {
-              shape: {startAngle: startRad, endAngle: endRad, innerRadius: innerRadius, outerRadius: outerRadius},
-              transform: {rotate: rotate}
-            };
-
+        // renders to an arc primitive
+        return {
+          shape: {startAngle: startRad, endAngle: endRad, innerRadius: innerRadius, outerRadius: outerRadius},
+          transform: {rotate: rotate}
         };
-    }
+    });
+    return { data, geom: 'arcband', customClass };
+  }
 
 }
 
-/*
- var angular = aesthetics.angular;
-*/
+export default LayoutPolarDonut;

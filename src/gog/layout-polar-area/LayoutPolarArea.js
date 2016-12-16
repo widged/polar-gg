@@ -1,27 +1,24 @@
 /* jshint esnext: true */
 
 import Polar from '../coord-polar/Polar';
+import Layout from '../layout/PolarLayout';
 
-export default class LayoutPolarArea {
+class LayoutPolarArea extends Layout {
 
-    static layout(aesthetics, options) {
-
-        var radial         = aesthetics.x;
-        var angular        = aesthetics.y;
-
-        var {originTheta} = options;
-        if(originTheta === undefined) { originTheta = 0; }
-        var rotate = originTheta + 90;
-
-        return function(d, idx) {
-            var radius = radial.scaleFn(d);
-            var angle  = Polar.radiansFromDegrees(angular.scaleFn(d));
-            // renders to a polylineradial primitive
-            return {
-              shape: {radius, angle},
-              transform: {rotate}
-            };
-        };
-    }
+  series(data, {customClass}) {
+    var { radial, angular, originTheta, options } = this.state;
+    var {barWidth} = options;
+    var rotate = originTheta  + 90;
+    var lines = (data || []).map((d, idx) => {
+      var radius = radial.scaleFn(d);
+      var angle  = Polar.radiansFromDegrees(angular.scaleFn(d));
+      // renders to a polylineradial primitive
+      return {radius, angle};
+    });
+    var gpData = [{ "shape": { "radiallines": lines}}];
+    return { data: gpData, geom: 'polylineradial', customClass };
+  }
 
 }
+
+export default LayoutPolarArea;

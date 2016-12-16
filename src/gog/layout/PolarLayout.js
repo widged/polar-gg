@@ -1,10 +1,9 @@
 /* jshint esnext: true */
 
 import Scale      from '../scale/Scale';
+import pie from "../../lib/pie-segments";
 
 class FN {
-
-
   static isStyle(key) {
     const styles = "fill,stroke,fillOpacity".split(',');
     return (styles.indexOf(key) !== -1);
@@ -35,29 +34,32 @@ class FN {
 
 }
 
-export default class Layout {
-
-  static geom(GeomLayout, aes, space, options) {
-
+class PolarLayout {
+  constructor(aes, space, options) {
     FN.extrapolateScales(aes);
-    // layout can depend on x, y, z, and size
-    var reduceFn = GeomLayout.reduce ? GeomLayout.reduce(aes, space, options) : null;
-    var layoutFn = GeomLayout.layout(aes, space, options);
     var styleFn  = FN.extrapolateStyles(aes);
-
-    return function(data) {
-      if(typeof reduceFn === 'function') { data = reduceFn(data); }
-      return (data || []).map(function(d, i) {
-        var {shape, transform} = layoutFn(d, i);
-        var obj = {};
-        obj.style = styleFn(d, i);
-        obj.shape = shape;
-        obj.transform = transform;
-        return obj;
-      });
-    };
+    var {x: radial, y: angular} = aes;
+    var {originTheta} = Object.assign({originTheta: 0}, space);
+    this.state = {radial, angular, originTheta, aes, space, options, styleFn};
+  }
+  style(d, idx) {
+    var {styleFn} = this.state;
+    return styleFn(d, idx);
   }
 
-
-
 }
+
+PolarLayout.percentExtrapolated = (arr, fn) => {
+  var sum = arr.reduce(function(acc, d) { return acc + fn(d); }, 0);
+  return (d) => {
+    return fn(d) / sum;
+  };
+};
+
+PolarLayout.pieExtrapolated = (arr, fn) => {
+    return pie({ value: fn } )(arr);
+};
+
+
+
+export default PolarLayout;

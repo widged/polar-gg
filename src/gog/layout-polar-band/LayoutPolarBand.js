@@ -1,29 +1,32 @@
 /* jshint esnext: true */
 
 import Polar from '../coord-polar/Polar';
+import Layout from '../layout/PolarLayout';
 
-export default class LayoutPolarBand {
+class LayoutPolarBand extends Layout {
 
-  static layout(aesthetics, {originTheta}, {barWidth}) {
+  series(data) {
+    // var {reduceFn} = this.state; if(typeof reduceFn === 'function') { data = reduceFn(data); }
+    var { radial, angular, originTheta, options } = this.state;
+    var {barWidth} = options;
+    // var {radial, angular, barWidth, rotate} = this.state;
+    if(barWidth === undefined)    { barWidth = 0.9;  }
+    barWidth = radial.scale(barWidth);
+    var rotate = originTheta  + 90;
 
-        var radial         = aesthetics.x;
-        var angular        = aesthetics.y;
-
-        if(originTheta === undefined) { originTheta = 0; }
-        if(barWidth === undefined)    { barWidth = radial.scale(0.9); }
-
-        return function(d, idx) {
-            var endAngle    = Polar.radiansFromDegrees(angular.scaleFn(d));
-            var innerRadius = radial.scaleFn(d);
-            var outerRadius = innerRadius + barWidth;
-
-            var rotate = originTheta  + 90;
-            // renders to an arc primitive
-            return {
-              shape: {endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius},
-              transform: {rotate: rotate}
-            };
+    data = (data || []).map((d, idx) => {
+      var endAngle    = Polar.radiansFromDegrees(angular.scaleFn(d));
+      var innerRadius = radial.scaleFn(d);
+      var outerRadius = innerRadius + barWidth;
+      return {
+          shape: {endAngle: endAngle, innerRadius: innerRadius, outerRadius: outerRadius},
+          style: this.style(d,idx),
+          transform: {rotate: rotate}
         };
-    }
+    });
+    return { data, geom: 'arcband' };
+  }
 
 }
+
+export default LayoutPolarBand;

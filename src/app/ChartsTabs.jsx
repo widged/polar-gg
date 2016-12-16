@@ -34,14 +34,14 @@ class ChartTabs extends Component {
   constructor(props) {
     super(props);
     var charts = [
-      {"type": "NA"   ,"children":["Angular", "Radial", "Color"]},
+      {"type": "Scales"   ,"children":["Angular", "Radial", "Color"]},
       {"type": "guide","children":[AngularGuide,RadialGuide]},
-      {"type": "plot" ,"children":[
+      {"type": "geoms" ,"children":[
         PolarAreaMock,PolarBandMock,PolarBarMock,
         PolarDonutMock,PolarDotMock,PolarPetalMock,
         PolarPieMock,PolarLineMock,PolarHatMock
       ]},
-      {"type": "NA"   ,"children":["Coming Soon!"]}
+      {"type": "plots"   ,"children":["Coming Soon!"]}
     ];
     this.state = {
       reactCharts  : charts.map(this.renderGeom("react")),
@@ -58,9 +58,15 @@ class ChartTabs extends Component {
           } else {
             kids = children.map((d, i) => { return <div key={'g'+i}>NA</div>  })
           }
-        } else if(type === "plot") {
+        } else if(type === "geoms") {
           kids = children.map((Mock, i) => {
-            var {data, geom, customClass} = Mock.scenario();
+            var config;;
+            if(Mock.getSeries) {
+              config = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
+            } else {
+              config = Mock.scenario();
+            }
+            var {data, geom, customClass} = config;
             const title = Mock.name;
             var layers = [{data: data, geom: geom}];
             var plot;
