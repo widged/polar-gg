@@ -33,14 +33,13 @@ class ChartTabs extends Component {
   constructor(props) {
     super(props);
     var charts = [
-      {"type": "Scales"   ,"children":["Angular", "Radial", "Color"]},
-      {"type": "guide","children":[AngularGuide,RadialGuide]},
-      {"type": "geoms" ,"children":[
+      {"type": "Guides","children":[AngularGuide,RadialGuide]},
+      {"type": "Geoms" ,"children":[
         PolarAreaMock,PolarBandMock,PolarBarMock,
         PolarDonutMock,PolarDotMock,PolarPetalMock,
         PolarPieMock,PolarLineMock,PolarHatMock/**/
       ]},
-      {"type": "plots"   ,"children":[
+      {"type": "Plots"   ,"children":[
         {geomLayers: [PolarAreaMock,PolarBandMock], guides:[AngularGuide,RadialGuide]}
       ]}
     ];
@@ -61,7 +60,7 @@ class ChartTabs extends Component {
 
       return ({type,children}, i) => {
         var kids;
-        if(type === "guide") {
+        if(type === "Guides") {
           kids = children.map((mock, i) => {
             var guide = mock.getLayout();
             var guideR;
@@ -73,7 +72,7 @@ class ChartTabs extends Component {
             }
             return renderGuide(guideR, i);
           });
-      } else if(type === "geoms") {
+      } else if(type === "Geoms") {
           kids = children.map((Mock, i) => {
             var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
             const title = Mock.name;
@@ -87,7 +86,7 @@ class ChartTabs extends Component {
             }
             return <div key={'g'+i}>{plot}</div>
           })
-        } else if(type === "plots") {
+        } else if(type === "Plots") {
           kids = children.map((plot, i) => {
              var layers = plot.geomLayers.map((Mock, i) => {
                var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
