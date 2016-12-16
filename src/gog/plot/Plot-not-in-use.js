@@ -10,14 +10,12 @@ export default class Plot {
         this.type = null;
 	}
 
-
-    use(Type) {
-        this.type = Type;
-        this.space = Type.space;
-        this.layers = [];
-        return this;
-    }
-
+  use(Type) {
+      this.type = Type;
+      this.space = Type.space;
+      this.layers = [];
+      return this;
+  }
 
 	addLayer(layer) {
 		console.log('ADD LAYER', layer);
@@ -25,14 +23,7 @@ export default class Plot {
         return this;
 	}
 
-
 	finalize() {
-		/*
-            var Type = state.type;
-            rootNode.innerHTML = Type.template;
-            Type.beforeRender(rootNode, space, state.aesthetics);
-		*/
-
 		return finalizeFn(Type.aesthetics, this.aesthetics, this.space, this.layers, this.interactives)
 	}
 

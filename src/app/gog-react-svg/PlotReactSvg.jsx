@@ -4,19 +4,20 @@ import React from 'react';
 const {Component} = React;
 import Layer from './LayerReactSvg.jsx';
 
-export default class Plot extends Component {
+export default class PlotReactSvg extends Component {
   render() {
-    const {width, height, children, customClass, layers} = this.props;
-    const transform = 'translate(' + (width/2) + ',' + (height/2) + ')';
-    const classes = 'chart' + (customClass ? ' ' + customClass : '');
+    const {width, height, children, layers, guides} = this.props;
+    const center = 'translate(' + (width/2) + ',' + (height/2) + ')';
 
    return (
-     <svg width={width} height={height}>
-        <g className={classes} transform={transform}>
-          {layers.map(({data, geom}, i) => {
-            return (<Layer key={"k"+i} data={data} geom={geom} />);
-          })}
-        </g>
+     <svg width={width} height={height} className='chart'>
+      <g transform={center} className='layers'>
+        <g className='guides'> {guides} </g>
+        {layers.map(({data, geom, customClass}, i) => {
+          const classes = 'layer' + (customClass ? ' ' + customClass : '');
+          return (<Layer key={"k"+i} data={data} geom={geom} className={classes} />);
+        })}
+      </g>
     </svg>
     );
   }

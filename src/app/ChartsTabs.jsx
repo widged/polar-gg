@@ -10,13 +10,13 @@ import SectionsGrid    from './SectionsGrid.jsx';
 
 // import reactRenderer   from '../surface/svg-surface/svgSurface.jsx';
 
-// Plot
+// Renderers
 import PlotReact    from './gog-react-svg/PlotReactSvg.jsx';
-import PlotVanilla    from './gog-vanilla-svg/PlotVanillaSvg.js';
+import PlotVanilla  from './gog-vanilla-svg/PlotVanillaSvg.js';
 // Guides
 import AngularGuide  from '../gog/guide-polar-xangular/usage/AngularGuide-demo.jsx';
 import RadialGuide   from '../gog/guide-polar-yradial/usage/RadialGuide-demo.jsx';
-// Layouts
+// Geom Series
 import PolarAreaMock  from '../gog/layout-polar-area/usage/PolarAreaMock.jsx';
 import PolarBandMock  from '../gog/layout-polar-band/usage/PolarBandMock.jsx';
 import PolarBarMock   from '../gog/layout-polar-bar/usage/PolarBarMock.jsx';
@@ -29,6 +29,15 @@ import PolarPieMock   from '../gog/layout-polar-pie/usage/PolarPieMock.jsx';
 
 const {Component} = React;
 
+const ReactCreateElement = (tag, props, children) => {
+  return React.createElement(tag, props, children);
+};
+
+const VanillaCreateElement = (tag, props, children) => {
+  return Vanilla.createElement(tag, props, children);
+};
+
+
 
 class ChartTabs extends Component {
   constructor(props) {
@@ -39,9 +48,11 @@ class ChartTabs extends Component {
       {"type": "geoms" ,"children":[
         PolarAreaMock,PolarBandMock,PolarBarMock,
         PolarDonutMock,PolarDotMock,PolarPetalMock,
-        PolarPieMock,PolarLineMock,PolarHatMock
+        PolarPieMock,PolarLineMock,PolarHatMock/**/
       ]},
-      {"type": "plots"   ,"children":["Coming Soon!"]}
+      {"type": "plots"   ,"children":[
+        {geomLayers: [PolarAreaMock,PolarBandMock], guides:[AngularGuide,RadialGuide]}
+      ]}
     ];
     this.state = {
       reactCharts  : charts.map(this.renderGeom("react")),
@@ -50,36 +61,61 @@ class ChartTabs extends Component {
   }
 
   renderGeom(renderer) {
+      const renderGuide = (guideR, i) => {
+        return (<div key={'g'+i}>
+          <svg width="250" height="250">
+            {guideR}
+          </svg>
+        </div>);
+      }
+
       return ({type,children}, i) => {
         var kids;
+
         if(type === "guide") {
-          if(renderer === 'react') {
-            kids = children.map((d, i) => { return <div key={'g'+i}>{React.createElement(d)}</div>  })
-          } else {
-            kids = children.map((d, i) => { return <div key={'g'+i}>NA</div>  })
-          }
-        } else if(type === "geoms") {
-          kids = children.map((Mock, i) => {
-            var config;;
-            if(Mock.getSeries) {
-              config = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
+          kids = children.map((mock, i) => {
+            var guide = mock.getLayout();
+            var guideR;
+            if(renderer === 'react') {
+                guideR = <g className="chart" transform="translate(125,125)">{guide.render(ReactCreateElement)}</g>
             } else {
-              config = Mock.scenario();
+              var elGuide  = guide.render(VanillaCreateElement).outerHTML;
+              guideR = <g className="chart" transform="translate(125,125)" dangerouslySetInnerHTML={{__html: elGuide}} />;
             }
-            var {data, geom, customClass} = config;
+            return renderGuide(guideR, i);
+          });
+      } else if(type === "geoms") {
+          kids = children.map((Mock, i) => {
+            var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
             const title = Mock.name;
-            var layers = [{data: data, geom: geom}];
+            var layers = [{data: data, geom: geom, customClass}];
             var plot;
             if(renderer === 'react') {
               plot = <PlotReact width="250" height="250" customClass={customClass} layers={layers}/>;
             } else if(renderer === 'vanilla') {
-              var elPlot  = Vanilla.createElement(
-                PlotVanilla,
-                {width: 250, height: 250, customClass: customClass, layers: [{data: data, geom: geom}]}
-              );
+              var elPlot  = Vanilla.createElement( PlotVanilla, {width: 250, height: 250, customClass: customClass, layers} );
               plot = <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />;
             }
             return <div key={'g'+i}>{plot}</div>
+          })
+        } else if(type === "plots") {
+          kids = children.map((plot, i) => {
+             var layers = plot.geomLayers.map((Mock, i) => {
+               var {data, geom, customClass} = Mock.getLayout().series(Mock.getSeries(), {customClass: "months"});
+               const title = Mock.name;
+               return {data: data, geom: geom, customClass};
+             });
+             var plot;
+             var guides = plot.guides.map((mock) => { return mock.getLayout(); })
+             if(renderer === 'react') {
+               guides = guides.map((guide) => { return guide.render(ReactCreateElement); });
+               plot = <PlotReact width="250" height="250" layers={layers} guides={guides}/>;
+             } else if(renderer === 'vanilla') {
+               guides = guides.map((guide) => { return guide.render(VanillaCreateElement); });
+               var elPlot  = Vanilla.createElement( PlotVanilla, {width: 250, height: 250, layers, guides} );
+               plot = <div dangerouslySetInnerHTML={{__html: elPlot.outerHTML}} />;
+             }
+             return <div key={'g'+i}>{plot}</div>
           })
         } else {
           kids = <div>{children.join(', ')}</div>

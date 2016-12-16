@@ -2,25 +2,34 @@
 
 import React from 'react';
 
-import RadialTick from './RadialTick.jsx';
+import RadialTick from './RadialTick.js';
 
-export default class AngularAxis extends React.Component {
+const h = (tag, props, children) => {
+  return React.createElement(tag, props, children);
+};
 
-    static renderTick(space, scaleFn) {
-     var axisTheta = space.originTheta;
-      return function(d, i) {
-          var r = scaleFn(d.value, i);
-          return <RadialTick key={'k_'+ d.value} r={r} text={d.text} addClassName={d.addClassName} axisTheta={axisTheta} />;
-      };
-    }
+class RadialAxis {
 
-    render() {
+  constructor(props) {
+      this.props = props;
+  }
+
+    render(h) {
        const {ticks, scale, space} = this.props;
        var lastTick  = ticks[ticks.length-1];
-      return <g className="axis yaxis radial">
-        <line className="mark" x={0} x2={scale(lastTick.value)}></line>
-        <g className="ticks">{ ticks.map(AngularAxis.renderTick(space, scale)) }</g>
-      </g>;
+       var axisTheta = space.originTheta;
 
+       var ticksH = ticks.map((d, i) => {
+           var r = scale(d.value, i);
+           var tick = new RadialTick({key:'k_'+ d.value,  r, text:d.text, addClassName: d.addClassName, axisTheta});
+           return tick.render(h);
+       });
+
+      return h('g', {className: "axis yaxis radial"}, [
+        h('line', { className:"mark", x:0, x2:scale(lastTick.value)}),
+        h('g', {className: 'ticks'}, ticksH)
+      ]);
   }
 }
+
+export default RadialAxis;

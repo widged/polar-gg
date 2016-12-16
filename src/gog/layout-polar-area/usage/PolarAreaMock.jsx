@@ -17,6 +17,14 @@ FN.getLayout = () => {
       coord: {domain: [0, 12], range: [0, 360]},
       dataFn  : function(d) { return d[0]; }
     },
+    "fill"   : {
+      "coord" : { domain : [0, 1], range: ['#FFCF32', '#FFCF32'] },
+      "dataFn": function(d, i) { return 0; }
+    },
+    "stroke" : {
+      "coord": { domain : [0, 1], range: ['#ffa600', '#ffa600'] },
+      "dataFn": function(d, i) { return 0; }
+    }
   };
   var options = {};
   return (new GeomLayout(aes, space, options));

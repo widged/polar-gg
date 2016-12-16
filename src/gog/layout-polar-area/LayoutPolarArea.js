@@ -15,7 +15,7 @@ class LayoutPolarArea extends Layout {
       // renders to a polylineradial primitive
       return {radius, angle};
     });
-    var gpData = [{ "shape": { "radiallines": lines}}];
+    var gpData = [{ "shape": { "radiallines": lines, closed: true}, style: this.style()}];
     return { data: gpData, geom: 'polylineradial', customClass };
   }
 

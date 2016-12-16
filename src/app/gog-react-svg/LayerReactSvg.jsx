@@ -6,7 +6,7 @@ import svgSurface from '../../surface/svg-surface/svgSurface.jsx';
 
 var {renderGeom} = svgSurface;
 
-export default class Layer extends Component {
+export default class LayerReactSvg extends Component {
 
   static augmentProps(props, i, style, options) {
     props.key = 'geom_' + i;
@@ -18,16 +18,15 @@ export default class Layer extends Component {
   }
 
   render() {
-    var {data, geom, options} = this.props;
+    var {data, geom, options, className} = this.props;
     var renderFn = renderGeom(geom);
 
     var renderItem = function(item, i) {
       var {type, props} = renderFn(item);
-      props = Layer.augmentProps(props, i, item.style, options);
+      props = LayerReactSvg.augmentProps(props, i, item.style, options);
       return React.createElement(type, props);
     };
 
-
-    return React.createElement('g', {}, data.map(renderItem));
+    return React.createElement('g', {className}, data.map(renderItem));
   }
 }

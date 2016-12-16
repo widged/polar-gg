@@ -3,18 +3,24 @@
 import Vanilla     from './Vanilla';
 import Layer from './LayerVanillaSvg';
 
-export default class Plot {
+export default class PlotVanillaSvg {
   render() {
-    var {width, height, layers, customClass} = this.props;
-    if(!width) { width = 250; }
-    if(!height) { height = 250; }
+    var {width, height, layers, guides} = this.props;
+    if(width  === undefined)  { width = 250;  }
+    if(height === undefined) { height = 250; }
     const transform = 'translate(' + (width/2) + ',' + (height/2) + ')';
-    const classes = 'layers' + (customClass ? ' ' + customClass : '');
 
-    var el = Vanilla.htmlize(`<svg width=${width} height=${height}>
-      <g class="${classes}" transform="${transform}"></g>
+    var el = Vanilla.htmlize(`<svg width=${width} height=${height} class="chart">
+
+      <g class="layers" transform="${transform}">
+        <g class="guides"></g>
+      </g>
     </svg>`);
 
+    var elGuides = el.querySelector('g.guides');
+    (guides || []).forEach((guide) => {
+      elGuides.appendChild(guide);
+    });
     var elLayers = el.querySelector('g.layers');
     layers.forEach(function(data) {
       var node = Vanilla.createElement(Layer, data);

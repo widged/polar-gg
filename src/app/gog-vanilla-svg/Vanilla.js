@@ -19,15 +19,28 @@ class FN {
       Object.keys(props).forEach(function(k) {
         var p = props[k];
         if(p === undefined || p === null || !p) { return; }
+        if(k === 'className') { k = 'class'; }
         if(k === 'style') { p = FN.convertKeysToDash(p); }
         node.setAttribute(k, p);
       });
   }
 
   static appendChildren(node, children) {
-      (children || []).forEach(function(d) {
+    const appendChild = (d) => {
+      if(d.nodeType) {
         node.appendChild(d);
+      } else {
+        node.textContent = d.toString();
+      }
+    };
+    if(!children) { return;}
+    if(children && !Array.isArray(children)) {
+      appendChild(children);
+    } else if(children  && Array.isArray(children))  {
+      children.forEach(function(d) {
+        appendChild(d);
       });
+    }
   }
 
   static createElementNS(tag) {

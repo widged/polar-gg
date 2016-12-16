@@ -9,9 +9,9 @@ class CurveCartesian {
   }
   areaStart() { this._line = 0;   }
   areaEnd()   { this._line = NaN; }
-  lineStart() { this._point = 0;  }
-  lineEnd() {
-    if (this._line || (this._line !== 0 && this._point === 1)) {
+  lineStart() { this._point = 0;    }
+  lineEnd(force) {
+    if (force || this._line || (this._line !== 0 && this._point === 1)) {
       this._path.closePath();
     }
     this._line = 1 - this._line;
@@ -53,7 +53,7 @@ class CurvePolar extends CurveCartesian {
   }
 }
 
-const radialLinePath = (data, {angle,radius,defined}) => {
+const radialLinePath = (data, {angle,radius,defined, closed}) => {
   let output = new CurvePolar(path());
   var open = false;
   for (let i = 0, ni = data.length, di = null; i <= ni; ++i) {
@@ -63,7 +63,7 @@ const radialLinePath = (data, {angle,radius,defined}) => {
       if (!open) {
         output.lineStart();
       } else {
-        output.lineEnd();
+        output.lineEnd(closed);
       }
       open = !open;
     }
@@ -86,7 +86,8 @@ const radialLinePathConfig = (fns) => {
 };
 
 export default (props) => {
-    var {radiallines} = props;
-    var fns = radialLinePathConfig();
-    return radialLinePath(radiallines, fns);
+    var {radiallines, closed} = props;
+    var fns = radialLinePathConfig({closed});
+    var anchors = radialLinePath(radiallines, fns);
+    return anchors;
 };
